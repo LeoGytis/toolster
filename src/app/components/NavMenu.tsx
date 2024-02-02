@@ -44,7 +44,44 @@ const NavMenu: any = () => {
 								<div className="hidden lg:flex">Mobiles</div>
 							</div>
 						</Link>
-
+						<Link href="/countries">
+							<div
+								className={`flex ${
+									pathname === "/countries"
+										? "text-[#9acd32]"
+										: "unset"
+								}`}
+							>
+								<FaMobileRetro className="mt-1 mr-4" />
+								<div className="hidden lg:flex">Countries</div>
+							</div>
+						</Link>
+						<Link href="/cars">
+							<div
+								className={`flex ${
+									pathname === "/cars"
+										? "text-[#9acd32]"
+										: "unset"
+								}`}
+							>
+								<FaMobileRetro className="mt-1 mr-4" />
+								<div className="hidden lg:flex">Cars</div>
+							</div>
+						</Link>{" "}
+						<Link href="/social-media">
+							<div
+								className={`flex ${
+									pathname === "/social-media"
+										? "text-[#9acd32]"
+										: "unset"
+								}`}
+							>
+								<FaMobileRetro className="mt-1 mr-4" />
+								<div className="hidden lg:flex">
+									Social Media
+								</div>
+							</div>
+						</Link>
 						<div className="flex">
 							<MdPersonSearch className="mt-1 mr-4 color-red" />
 							<div className="hidden lg:flex">Recruitment</div>

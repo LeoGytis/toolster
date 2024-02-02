@@ -24,10 +24,7 @@ export default function RootLayout({
 						<header className="hidden sm:flex w-1/6">
 							<NavMenu />
 						</header>
-						<main className="flex flex-col w-full">
-							{/* <MainBoard /> */}
-							{children}
-						</main>
+						<main className="flex flex-col w-full">{children}</main>
 					</div>
 				</div>
 			</body>
