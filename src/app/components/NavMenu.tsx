@@ -1,3 +1,4 @@
+"use client";
 import { BiSolidDashboard } from "react-icons/bi";
 import { MdPersonSearch } from "react-icons/md";
 import { FaPeopleGroup, FaHeadphonesSimple } from "react-icons/fa6";
@@ -6,8 +7,11 @@ import { IoSettingsSharp } from "react-icons/io5";
 import { BsCalendar3 } from "react-icons/bs";
 import { FaMobileRetro } from "react-icons/fa6";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const NavMenu: any = () => {
+	const pathname = usePathname();
+
 	return (
 		<div className="h-screen w-full bg-[#171F32] border-r-2 border-[#9acd32] px-4 lg:px-6">
 			<div className="flex flex-col gap-10 justify-between lg:h-5/6 text-gray-400">
@@ -17,16 +21,26 @@ const NavMenu: any = () => {
 					</h1>
 					<div className="flex flex-col gap-6 items-center lg:items-start mb-10">
 						<Link href="/dashboard">
-							<div className="flex">
-								<BiSolidDashboard className="text-[#9acd32] mt-1 mr-4" />
-								<div className="hidden lg:flex text-[#9acd32]">
-									Dashboard
-								</div>
+							<div
+								className={`flex ${
+									pathname === "/dashboard"
+										? "text-[#9acd32]"
+										: "unset"
+								}`}
+							>
+								<BiSolidDashboard className="mt-1 mr-4" />
+								<div className="hidden lg:flex">Dashboard</div>
 							</div>
 						</Link>
 						<Link href="/mobiles">
-							<div className="flex">
-								<FaMobileRetro className=" mt-1 mr-4" />
+							<div
+								className={`flex ${
+									pathname === "/mobiles"
+										? "text-[#9acd32]"
+										: "unset"
+								}`}
+							>
+								<FaMobileRetro className="mt-1 mr-4" />
 								<div className="hidden lg:flex">Mobiles</div>
 							</div>
 						</Link>
