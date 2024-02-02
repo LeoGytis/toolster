@@ -4,6 +4,8 @@ import { FaPeopleGroup, FaHeadphonesSimple } from "react-icons/fa6";
 import { PiCirclesThreeBold } from "react-icons/pi";
 import { IoSettingsSharp } from "react-icons/io5";
 import { BsCalendar3 } from "react-icons/bs";
+import { FaMobileRetro } from "react-icons/fa6";
+import Link from "next/link";
 
 const NavMenu: any = () => {
 	return (
@@ -14,10 +16,21 @@ const NavMenu: any = () => {
 						Menu
 					</h1>
 					<div className="flex flex-col gap-6 items-center lg:items-start mb-10">
-						<div className="flex">
-							<BiSolidDashboard className="text-[#9acd32] mt-1 mr-4" />
-							<div className="hidden lg:flex">Dashboard</div>
-						</div>
+						<Link href="/dashboard">
+							<div className="flex">
+								<BiSolidDashboard className="text-[#9acd32] mt-1 mr-4" />
+								<div className="hidden lg:flex text-[#9acd32]">
+									Dashboard
+								</div>
+							</div>
+						</Link>
+						<Link href="/mobiles">
+							<div className="flex">
+								<FaMobileRetro className=" mt-1 mr-4" />
+								<div className="hidden lg:flex">Mobiles</div>
+							</div>
+						</Link>
+
 						<div className="flex">
 							<MdPersonSearch className="mt-1 mr-4 color-red" />
 							<div className="hidden lg:flex">Recruitment</div>
