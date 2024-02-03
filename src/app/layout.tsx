@@ -6,7 +6,7 @@ import NavMenu from "../components/NavMenu";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Toolster | Tools to manage your time and productivity",
+	title: "Toolster",
 	description: "Toolster | Tools to manage your time and productivity",
 	icons: {
 		icon: "/images/toolster_favicon.ico",
@@ -23,7 +23,7 @@ export default function RootLayout({
 			<body className={inter.className}>
 				<div className="mx-auto min-h-screen flex items-center justify-center">
 					<div className="flex w-full">
-						<header className="hidden sm:flex w-1/6">
+						<header className="hidden sm:flex w-72">
 							<NavMenu />
 						</header>
 						<main className="flex flex-col w-full py-8 px-4">
