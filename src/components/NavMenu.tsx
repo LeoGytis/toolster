@@ -6,6 +6,7 @@ import { PiCirclesThreeBold } from "react-icons/pi";
 import { IoSettingsSharp } from "react-icons/io5";
 import { BsCalendar3 } from "react-icons/bs";
 import { FaMobileRetro } from "react-icons/fa6";
+import { IoCarSharp } from "react-icons/io5";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -64,7 +65,7 @@ const NavMenu: any = () => {
 										: "unset"
 								}`}
 							>
-								<FaMobileRetro className="mt-1 mr-4" />
+								<IoCarSharp className="mt-1 mr-4" />
 								<div className="hidden lg:flex">Cars</div>
 							</div>
 						</Link>{" "}
@@ -97,6 +98,10 @@ const NavMenu: any = () => {
 						<div className="flex">
 							<PiCirclesThreeBold className="mt-1 mr-4" />
 							<div className="hidden lg:flex">Department</div>
+						</div>
+						<div className="flex">
+							<IoSettingsSharp className="mt-1 mr-4" />
+							<div className="hidden lg:flex">Settings</div>
 						</div>
 					</div>
 				</div>

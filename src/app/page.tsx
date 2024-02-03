@@ -1,6 +1,6 @@
 import Image from "next/image";
-import NavMenu from "./components/NavMenu";
-import MainBoard from "./components/MainBoard";
+import NavMenu from "../components/NavMenu";
+import MainBoard from "../components/MainBoard";
 
 export default function Home() {
 	return (

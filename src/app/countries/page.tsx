@@ -43,10 +43,9 @@ const Countries = () => {
 	}, []); // Empty dependency array to run once on component mount
 
 	return (
-		<div className="w-full h-full bg-emerald-500 text-black lg:px-6">
-			<h1>Countries Data</h1>
+		<div className="w-full h-full bg-gray-200 text-black lg:px-6">
 			{countriesData ? (
-				<ul className="flex gap-10 flex-wrap">
+				<ul className="flex gap-10 flex-wrap pt-10">
 					{countriesData.map((country, index) => (
 						<li key={index}>
 							<strong>Name:</strong> {country.name.common}
