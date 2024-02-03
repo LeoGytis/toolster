@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -40,15 +41,15 @@ const Countries = () => {
 		};
 
 		fetchData();
-	}, []); // Empty dependency array to run once on component mount
+	}, []);
 
 	return (
-		<div className="w-full h-full bg-gray-200 text-black lg:px-6">
+		<div className="text-black">
 			{countriesData ? (
 				<ul className="flex gap-10 flex-wrap pt-10">
 					{countriesData.map((country, index) => (
 						<li key={index}>
-							<strong>Name:</strong> {country.name.common}
+							<strong> {country.name.common}</strong>
 							<br />
 							<img
 								src={country.flags.png}

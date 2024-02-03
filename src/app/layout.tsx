@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavMenu from "../components/NavMenu";
-import MainBoard from "../components/MainBoard";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	title: "Toolster | Tools to manage your time and productivity",
 	description: "Toolster | Tools to manage your time and productivity",
+	icons: {
+		icon: "/images/toolster_favicon.ico",
+	},
 };
 
 export default function RootLayout({
@@ -24,7 +26,9 @@ export default function RootLayout({
 						<header className="hidden sm:flex w-1/6">
 							<NavMenu />
 						</header>
-						<main className="flex flex-col w-full">{children}</main>
+						<main className="flex flex-col w-full py-8 px-4">
+							{children}
+						</main>
 					</div>
 				</div>
 			</body>

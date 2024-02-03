@@ -1,12 +1,13 @@
 "use client";
 import { BiSolidDashboard } from "react-icons/bi";
 import { MdPersonSearch } from "react-icons/md";
-import { FaPeopleGroup, FaHeadphonesSimple } from "react-icons/fa6";
+import { FaPeopleGroup } from "react-icons/fa6";
 import { PiCirclesThreeBold } from "react-icons/pi";
 import { IoSettingsSharp } from "react-icons/io5";
 import { BsCalendar3 } from "react-icons/bs";
 import { FaMobileRetro } from "react-icons/fa6";
 import { IoCarSharp } from "react-icons/io5";
+import { FaGlobeAmericas } from "react-icons/fa";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -17,8 +18,8 @@ const NavMenu: any = () => {
 		<div className="h-screen w-full bg-[#171F32] border-r-2 border-[#9acd32] px-4 lg:px-6">
 			<div className="flex flex-col gap-10 justify-between lg:h-5/6 text-gray-400">
 				<div>
-					<h1 className="flex justify-center text-2xl text-[#9acd32] font-bold py-10">
-						Menu
+					<h1 className="flex justify-center text-xl text-[#9acd32] font-bold py-10">
+						Toolster
 					</h1>
 					<div className="flex flex-col gap-6 items-center lg:items-start mb-10">
 						<Link href="/dashboard">
@@ -53,7 +54,7 @@ const NavMenu: any = () => {
 										: "unset"
 								}`}
 							>
-								<FaMobileRetro className="mt-1 mr-4" />
+								<FaGlobeAmericas className="mt-1 mr-4" />
 								<div className="hidden lg:flex">Countries</div>
 							</div>
 						</Link>
