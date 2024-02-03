@@ -10,6 +10,7 @@ import { IoCarSharp } from "react-icons/io5";
 import { FaGlobeAmericas } from "react-icons/fa";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import NavLink from "./NavLink";
 
 const NavMenu: any = () => {
 	const pathname = usePathname();
@@ -24,68 +25,20 @@ const NavMenu: any = () => {
 				</Link>
 				<div>
 					<div className="flex flex-col gap-6 items-center md:items-start ps-0 md:ps-2">
-						<Link href="/dashboard">
-							<div
-								className={`flex ${
-									pathname === "/dashboard"
-										? "text-[#9acd32]"
-										: "unset"
-								}`}
-							>
-								<BiSolidDashboard className="mt-1 mr-4" />
-								<div className="hidden md:flex">Dashboard</div>
-							</div>
-						</Link>
-						<Link href="/mobiles">
-							<div
-								className={`flex ${
-									pathname === "/mobiles"
-										? "text-[#9acd32]"
-										: "unset"
-								}`}
-							>
-								<FaMobileRetro className="mt-1 mr-4" />
-								<div className="hidden md:flex">Mobiles</div>
-							</div>
-						</Link>
-						<Link href="/countries">
-							<div
-								className={`flex ${
-									pathname === "/countries"
-										? "text-[#9acd32]"
-										: "unset"
-								}`}
-							>
-								<FaGlobeAmericas className="mt-1 mr-4" />
-								<div className="hidden md:flex">Countries</div>
-							</div>
-						</Link>
-						<Link href="/cars">
-							<div
-								className={`flex ${
-									pathname === "/cars"
-										? "text-[#9acd32]"
-										: "unset"
-								}`}
-							>
-								<IoCarSharp className="mt-1 mr-4" />
-								<div className="hidden md:flex">Cars</div>
-							</div>
-						</Link>{" "}
-						<Link href="/social-media">
-							<div
-								className={`flex ${
-									pathname === "/social-media"
-										? "text-[#9acd32]"
-										: "unset"
-								}`}
-							>
-								<FaMobileRetro className="mt-1 mr-4" />
-								<div className="hidden md:flex">
-									Social Media
-								</div>
-							</div>
-						</Link>
+						<NavLink
+							item={"dashboard"}
+							icon={<BiSolidDashboard />}
+						/>
+						<NavLink item={"mobiles"} icon={<FaMobileRetro />} />
+						<NavLink
+							item={"countries"}
+							icon={<FaGlobeAmericas />}
+						/>
+						<NavLink item={"cars"} icon={<IoCarSharp />} />
+						<NavLink
+							item={"social-media"}
+							icon={<FaMobileRetro />}
+						/>
 						<div className="flex">
 							<MdPersonSearch className="mt-1 mr-4 color-red" />
 							<div className="hidden md:flex">Recruitment</div>
