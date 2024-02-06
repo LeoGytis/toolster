@@ -26,7 +26,7 @@ const WeatherNavBar = () => {
 					<p className="text-slate-900/80 text-sm"> Lietuva </p>
 				</section>
 				<div>
-					<SearchBox />
+					{/* <SearchBox /> */}
 					{/* <SearchBox
                 value={city}
                 onSubmit={handleSubmiSearch}
