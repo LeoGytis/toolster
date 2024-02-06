@@ -26,9 +26,7 @@ export default function RootLayout({
 						<header className="hidden sm:flex w-72">
 							<NavMenu />
 						</header>
-						<main className="flex flex-col w-full py-8 px-4">
-							{children}
-						</main>
+						<main className="flex flex-col w-full">{children}</main>
 					</div>
 				</div>
 			</body>

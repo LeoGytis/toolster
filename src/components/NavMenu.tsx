@@ -9,6 +9,7 @@ import { FaMobileRetro } from "react-icons/fa6";
 import { IoCarSharp } from "react-icons/io5";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { TiWeatherPartlySunny } from "react-icons/ti";
+import { MdOutlineTimer } from "react-icons/md";
 import Link from "next/link";
 import NavLink from "./NavLink";
 
@@ -23,6 +24,7 @@ const NavMenu: any = () => {
 				</Link>
 				<nav className="flex flex-col gap-6 items-center md:items-start ps-0 md:ps-2">
 					<NavLink item={"weather"} icon={<TiWeatherPartlySunny />} />
+					<NavLink item={"time-tracker"} icon={<MdOutlineTimer />} />
 					<NavLink item={"dashboard"} icon={<BiSolidDashboard />} />
 					<NavLink item={"mobiles"} icon={<FaMobileRetro />} />
 					<NavLink item={"countries"} icon={<FaGlobeAmericas />} />
