@@ -1,6 +1,7 @@
 "use client";
 
 import WeatherNavBar from "@/components/WeatherNavBar";
+import { WeatherDetail, WeatherData } from "./weatherInterfaces";
 import { useEffect, useState } from "react";
 
 const Weather = () => {
