@@ -8,13 +8,11 @@ import { BsCalendar3 } from "react-icons/bs";
 import { FaMobileRetro } from "react-icons/fa6";
 import { IoCarSharp } from "react-icons/io5";
 import { FaGlobeAmericas } from "react-icons/fa";
+import { TiWeatherPartlySunny } from "react-icons/ti";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import NavLink from "./NavLink";
 
 const NavMenu: any = () => {
-	const pathname = usePathname();
-
 	return (
 		<div className="h-screen w-full bg-[#171F32] text-gray-400 border-r-2 border-[#9acd32] px-4 lg:px-6">
 			<div className="flex flex-col gap-4">
@@ -23,44 +21,34 @@ const NavMenu: any = () => {
 						Toolster
 					</h1>
 				</Link>
-				<div>
-					<div className="flex flex-col gap-6 items-center md:items-start ps-0 md:ps-2">
-						<NavLink
-							item={"dashboard"}
-							icon={<BiSolidDashboard />}
-						/>
-						<NavLink item={"mobiles"} icon={<FaMobileRetro />} />
-						<NavLink
-							item={"countries"}
-							icon={<FaGlobeAmericas />}
-						/>
-						<NavLink item={"cars"} icon={<IoCarSharp />} />
-						<NavLink
-							item={"social-media"}
-							icon={<FaMobileRetro />}
-						/>
-						<div className="flex">
-							<MdPersonSearch className="mt-1 mr-4 color-red" />
-							<div className="hidden md:flex">Recruitment</div>
-						</div>
-						<div className="flex">
-							<BsCalendar3 className="mt-1 mr-4" />
-							<div className="hidden md:flex">Schedule</div>
-						</div>
-						<div className="flex">
-							<FaPeopleGroup className="mt-1 mr-4" />
-							<div className="hidden md:flex"> Employee</div>
-						</div>
-						<div className="flex">
-							<PiCirclesThreeBold className="mt-1 mr-4" />
-							<div className="hidden md:flex">Department</div>
-						</div>
-						<div className="flex">
-							<IoSettingsSharp className="mt-1 mr-4" />
-							<div className="hidden md:flex">Settings</div>
-						</div>
+				<nav className="flex flex-col gap-6 items-center md:items-start ps-0 md:ps-2">
+					<NavLink item={"weather"} icon={<TiWeatherPartlySunny />} />
+					<NavLink item={"dashboard"} icon={<BiSolidDashboard />} />
+					<NavLink item={"mobiles"} icon={<FaMobileRetro />} />
+					<NavLink item={"countries"} icon={<FaGlobeAmericas />} />
+					<NavLink item={"cars"} icon={<IoCarSharp />} />
+					<NavLink item={"social-media"} icon={<FaMobileRetro />} />
+					<div className="flex">
+						<MdPersonSearch className="mt-1 mr-4 color-red" />
+						<div className="hidden md:flex">Recruitment</div>
 					</div>
-				</div>
+					<div className="flex">
+						<BsCalendar3 className="mt-1 mr-4" />
+						<div className="hidden md:flex">Schedule</div>
+					</div>
+					<div className="flex">
+						<FaPeopleGroup className="mt-1 mr-4" />
+						<div className="hidden md:flex"> Employee</div>
+					</div>
+					<div className="flex">
+						<PiCirclesThreeBold className="mt-1 mr-4" />
+						<div className="hidden md:flex">Department</div>
+					</div>
+					<div className="flex">
+						<IoSettingsSharp className="mt-1 mr-4" />
+						<div className="hidden md:flex">Settings</div>
+					</div>
+				</nav>
 			</div>
 		</div>
 	);
