@@ -108,8 +108,9 @@ const Weather = () => {
 									>
 										<p className="whitespace-nowrap">{format(parseISO(d.dt_txt), "h:mm a")}</p>
 
-										<WeatherIcon iconName={d.weather[0].icon} />
+										{/* <WeatherIcon iconName={d.weather[0].icon} /> */}
 										<WeatherIcon iconName={getDayOrNightIcon(d.weather[0].icon, d.dt_txt)} />
+										<WeatherIcon iconName={(d.weather[0].icon, d.dt_txt)} />
 										<p>{temperatureConverter(d?.main.temp ?? 0)}°</p>
 									</div>
 								))}
@@ -122,6 +123,7 @@ const Weather = () => {
 							<WeatherIcon
 								iconName={getDayOrNightIcon(firstData?.weather[0].icon ?? "", firstData?.dt_txt ?? "")}
 							/>
+							<WeatherIcon iconName={(firstData?.weather[0].icon ?? "", firstData?.dt_txt ?? "")} />
 						</WeatherContainer>
 						<WeatherContainer className="bg-yellow-300/80  px-6 gap-4 justify-between overflow-x-auto">
 							<WeatherDetails
