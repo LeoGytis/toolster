@@ -23,6 +23,7 @@ const Weather = () => {
 			const { data } = await axios.get(
 				`https://api.openweathermap.org/data/2.5/forecast?q=kaunas&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}&cnt=56`
 			);
+			console.log(" data gauta -->", data);
 			return data;
 		},
 	});
@@ -32,17 +33,33 @@ const Weather = () => {
 
 	const firstData = data?.list[0];
 
-	// ---- Filter Date Data -----
-	const uniqueDates = [...new Set(data?.list.map((entry) => new Date(entry.dt * 1000).toISOString().split("T")[0]))];
+	// ---- Filter Unique Dates -----
+	// const uniqueDates = [...new Set(data?.list.map((entry) => new Date(entry.dt * 1000).toISOString().split("T")[0]))];
+	// console.log("🚀 ~ Weather ~ uniqueDates:", uniqueDates);
+	const uniqueDatesNew = data?.list
+		.map((entry) => new Date(entry.dt * 1000).toISOString().split("T")[0])
+		.filter((date, index, self) => self.indexOf(date) === index);
+	console.log("🚀 ~ Weather ~ uniqueDatesNew:", uniqueDatesNew);
 
 	// Filtering data to get the first entry after 6 AM for each unique date
-	const firstDataForEachDate = uniqueDates.map((date) => {
+	const firstDataForEachDate = uniqueDatesNew?.map((date) => {
 		return data?.list.find((entry) => {
 			const entryDate = new Date(entry.dt * 1000).toISOString().split("T")[0];
 			const entryTime = new Date(entry.dt * 1000).getHours();
 			return entryDate === date && entryTime >= 6;
 		});
 	});
+	console.log("🚀 ~ firstDataForEachDate ~ firstDataForEachDate:", firstDataForEachDate);
+	// let firstDataForEachDate: WeatherEntry[] = [];
+	// if (uniqueDates) {
+	// 	firstDataForEachDate = uniqueDates.map((date) => {
+	// 		return data?.list.find((entry) => {
+	// 			const entryDate = new Date(entry.dt * 1000).toISOString().split("T")[0];
+	// 			const entryTime = new Date(entry.dt * 1000).getHours();
+	// 			return entryDate === date && entryTime >= 6;
+	// 		});
+	// 	}) as YourItemType[]; // Replace YourItemType with the actual type of the items in firstDataForEachDate
+	// }
 
 	if (isPending)
 		return (
@@ -128,7 +145,7 @@ const Weather = () => {
 				{/* 7 day forcast data  */}
 				<section className="flex w-full flex-col gap-4  ">
 					<p className="text-2xl">Forcast (7 days)</p>
-					{firstDataForEachDate.map((d, i) => (
+					{firstDataForEachDate?.map((d, i) => (
 						<ForecastWeatherDetail
 							key={i}
 							description={d?.weather[0].description ?? ""}
@@ -148,8 +165,6 @@ const Weather = () => {
 						/>
 					))}
 				</section>
-
-				<section className="flex w-full flex-col gap-4  ">aaa</section>
 			</main>
 		</div>
 	);
