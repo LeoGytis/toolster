@@ -4,11 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavMenu from "../components/NavMenu";
-import {
-	QueryClient,
-	QueryClientProvider,
-	useQuery,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,11 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 // 	},
 // };
 
-export default function RootLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
 	const queryClient = new QueryClient();
 	return (
 		<html lang="en">
@@ -32,12 +24,10 @@ export default function RootLayout({
 				<body className={inter.className}>
 					<div className="mx-auto min-h-screen flex items-center justify-center">
 						<div className="flex w-full">
-							<header className="hidden sm:flex w-72">
+							<header className=" hidden sm:flex w-2/12">
 								<NavMenu />
 							</header>
-							<main className="flex flex-col w-full">
-								{children}
-							</main>
+							<main className="w-10/12">{children}</main>
 						</div>
 					</div>
 				</body>

@@ -11,7 +11,7 @@ import { useAtom } from "jotai";
 type Props = { location?: string };
 const API_KEY = process.env.NEXT_PUBLIC_WEATHER_KEY;
 
-const WeatherNavBar = ({ location }: Props) => {
+const WeatherTopBar = ({ location }: Props) => {
 	const [city, setCity] = useState("");
 	const [error, setError] = useState("");
 	//
@@ -85,21 +85,20 @@ const WeatherNavBar = ({ location }: Props) => {
 
 	return (
 		<>
-			<nav className="shadow-sm  sticky top-0 left-0 z-50 bg-white">
-				<div className="h-[80px]     w-full    flex   justify-between items-center  max-w-7xl px-3 mx-auto">
-					<p className="flex items-center justify-center gap-2  ">
-						<h2 className="text-gray-500 text-3xl">Weather</h2>
-						<MdWbSunny className="text-3xl mt-1 text-yellow-300" />
+			<nav className="sticky top-0 left-0 z-50 bg-gray-200 shadow-md">
+				<div className="mx-auto max-w-7xl w-full h-16 flex justify-between items-center px-3 ">
+					<p className="flex items-center justify-center gap-2">
+						<MdWbSunny className="text-2xl mt-1 text-orange-500" />
+						<h2 className="text-gray-600 text-2xl">Weather</h2>
 					</p>
-					{/*  */}
 					<section className="flex gap-2 items-center">
 						<MdMyLocation
 							title="Your Current Location"
 							onClick={handleCurrentLocation}
 							className="text-2xl  text-gray-400 hover:opacity-80 cursor-pointer"
 						/>
-						<MdOutlineLocationOn className="text-3xl" />
-						<p className="text-slate-900/80 text-sm"> {location} </p>
+						<MdOutlineLocationOn className="text-2xl" />
+						<p className="text-slate-700 text-sm"> {location} </p>
 						<div className="relative hidden md:flex">
 							<SearchBox
 								value={city}
@@ -139,7 +138,7 @@ const WeatherNavBar = ({ location }: Props) => {
 	);
 };
 
-export default WeatherNavBar;
+export default WeatherTopBar;
 
 function SuggetionBox({
 	showSuggestions,

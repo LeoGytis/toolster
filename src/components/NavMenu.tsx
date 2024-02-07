@@ -15,12 +15,10 @@ import NavLink from "./NavLink";
 
 const NavMenu: any = () => {
 	return (
-		<div className="h-screen w-full bg-[#171F32] text-gray-400 border-r-2 border-[#9acd32] px-4 lg:px-6">
+		<div className="sticky top-0 left-0 h-screen w-full bg-[#171F32] text-gray-400 border-r-2 border-[#9acd32] px-4 lg:px-6">
 			<div className="flex flex-col gap-4">
 				<Link href="/">
-					<h1 className="flex justify-center text-xl text-[#9acd32] font-bold py-10">
-						Toolster
-					</h1>
+					<h1 className="flex justify-center text-xl text-[#9acd32] font-bold py-10">Toolster</h1>
 				</Link>
 				<nav className="flex flex-col gap-6 items-center md:items-start ps-0 md:ps-2">
 					<NavLink item={"weather"} icon={<TiWeatherPartlySunny />} />

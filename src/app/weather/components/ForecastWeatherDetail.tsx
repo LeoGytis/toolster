@@ -1,6 +1,6 @@
 import React from "react";
 import WeatherIcon from "./WeatherIcon";
-import WeatherContainer from "./WeatherContainer";
+import WeatherWrapper from "./WeatherWrapper";
 import { temperatureConverter } from "@/app/weather/utils/temperatureConverter";
 import WeatherDetails, { WeatherDetailProps } from "./WeaterDetails";
 
@@ -18,7 +18,7 @@ export interface ForecastWeatherDetailProps extends WeatherDetailProps {
 export default function ForecastWeatherDetail(props: ForecastWeatherDetailProps) {
 	const { weatehrIcon, date, day, temp, feels_like, temp_min, temp_max, description } = props;
 	return (
-		<WeatherContainer className="gap-4">
+		<WeatherWrapper className="gap-4">
 			<section className=" flex gap-4 items-center px-4  ">
 				<div className=" flex flex-col gap-1 items-center">
 					<WeatherIcon iconName={weatehrIcon} />
@@ -37,6 +37,6 @@ export default function ForecastWeatherDetail(props: ForecastWeatherDetailProps)
 			<section className="w-full overflow-x-auto flex justify-between gap-4 px-4 pr-10">
 				<WeatherDetails {...props} />
 			</section>
-		</WeatherContainer>
+		</WeatherWrapper>
 	);
 }
