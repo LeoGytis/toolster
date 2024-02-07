@@ -1,19 +1,19 @@
 "use client";
 
-import WeatherNavBar from "@/components/WeatherNavBar";
+import WeatherNavBar from "@/app/weather/components/WeatherNavBar";
 import { WeatherDetailProps, WeatherDataProps } from "./weatherInterfaces";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect } from "react";
 import { format } from "date-fns/format";
 import { fromUnixTime, parseISO } from "date-fns";
-import WeatherContainer from "@/components/WeatherContainer";
+import WeatherContainer from "@/app/weather/components/WeatherContainer";
 import { temperatureConverter } from "@/app/weather/utils/temperatureConverter";
-import WeatherIcon from "@/components/WeatherIcon";
+import WeatherIcon from "@/app/weather/components/WeatherIcon";
 import { getDayOrNightIcon } from "@/app/weather/utils/getDayOrNight";
 import { metersToKilometers } from "@/app/weather/utils/metersToKilometers";
-import WeatherDetails from "@/components/WeaterDetails";
-import ForecastWeatherDetail from "@/components/ForecastWeatherDetail";
+import WeatherDetails from "@/app/weather/components/WeaterDetails";
+import ForecastWeatherDetail from "@/app/weather/components/ForecastWeatherDetail";
 import { useAtom } from "jotai";
 import { loadingCityAtom, placeAtom } from "../atom";
 
