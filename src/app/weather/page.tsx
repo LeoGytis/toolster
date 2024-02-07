@@ -76,7 +76,8 @@ const Weather = () => {
 				<section className="space-y-4 ">
 					<div className="space-y-2">
 						<h2 className="flex gap-1 text-2xl items-end ">
-							<p>{format(parseISO(firstData?.dt_txt ?? ""), "yyyy.MM.dd EEEE")}</p>
+							{/* <p>{format(parseISO(firstData?.dt_txt ?? ""), "yyyy.MM.dd EEEE")}</p> */}
+							<p>{format(parseISO(firstData?.dt_txt ?? ""), "HH:mm")}</p>
 						</h2>
 						<WeatherWrapper className="gap-10 px-6 items-center">
 							<div className=" flex flex-col px-4 ">
@@ -105,8 +106,7 @@ const Weather = () => {
 										key={i}
 										className="flex flex-col justify-between gap-2 items-center text-xs font-semibold "
 									>
-										<p className="whitespace-nowrap">{format(parseISO(d.dt_txt), "h:mm a")}</p>
-
+										<p className="whitespace-nowrap">{format(parseISO(d.dt_txt), "HH:mm")}</p>
 										<WeatherIcon iconName={d.weather[0].icon} />
 										<p>{temperatureConverter(d?.main.temp ?? 0)}°</p>
 									</div>
