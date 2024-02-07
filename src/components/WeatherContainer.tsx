@@ -1,4 +1,4 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/app/weather/utils/cn";
 import React from "react";
 
 type Props = {};

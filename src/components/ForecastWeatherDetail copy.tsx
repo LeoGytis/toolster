@@ -3,7 +3,7 @@ import WeatherIcon from "./WeatherIcon";
 import WeatherDetails from "./ForecastWeatherDetail";
 import WeatherContainer from "./WeatherContainer";
 // import { WeatherDetailProps } from "@/app/weather/weatherInterfaces";
-import { temperatureConverter } from "@/utils/temperatureConverter";
+import { temperatureConverter } from "@/app/weather/utils/temperatureConverter";
 // import { ForecastWeatherDetailProps } from "@/app/weather/weatherInterfaces";
 import { WeatherDetailProps } from "./WeaterDetails";
 

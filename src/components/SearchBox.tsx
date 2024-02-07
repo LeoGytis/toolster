@@ -1,4 +1,4 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/app/weather/utils/cn";
 import React from "react";
 import { IoSearch } from "react-icons/io5";
 
@@ -13,10 +13,7 @@ const SearchBox = (props: SearchBoxProps) => {
 	return (
 		<form
 			onSubmit={props.onSubmit}
-			className={cn(
-				"flex relative items-center justify-center h-10",
-				props.className
-			)}
+			className={cn("flex relative items-center justify-center h-10", props.className)}
 		>
 			<input
 				type="text"

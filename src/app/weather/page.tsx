@@ -8,11 +8,10 @@ import { useEffect } from "react";
 import { format } from "date-fns/format";
 import { fromUnixTime, parseISO } from "date-fns";
 import WeatherContainer from "@/components/WeatherContainer";
-import { temperatureConverter } from "@/utils/temperatureConverter";
+import { temperatureConverter } from "@/app/weather/utils/temperatureConverter";
 import WeatherIcon from "@/components/WeatherIcon";
-import { getDayOrNightIcon } from "@/utils/getDayOrNight";
-import { metersToKilometers } from "@/utils/metersToKilometers";
-import { convertWindSpeed } from "@/utils/convertWindSpeed";
+import { getDayOrNightIcon } from "@/app/weather/utils/getDayOrNight";
+import { metersToKilometers } from "@/app/weather/utils/metersToKilometers";
 import WeatherDetails from "@/components/WeaterDetails";
 import ForecastWeatherDetail from "@/components/ForecastWeatherDetail";
 import { useAtom } from "jotai";
@@ -132,7 +131,7 @@ const Weather = () => {
 								humidity={`${firstData?.main.humidity}%`}
 								sunrise={format(fromUnixTime(data?.city.sunrise ?? 1702949452), "H:mm")}
 								sunset={format(fromUnixTime(data?.city.sunset ?? 1702517657), "H:mm")}
-								windSpeed={convertWindSpeed(firstData?.wind.speed ?? 1.64)}
+								windSpeed={`${firstData?.wind.speed ?? 1.64} `}
 							/>
 						</WeatherContainer>
 						{/* right  */}
@@ -157,7 +156,7 @@ const Weather = () => {
 							sunrise={format(fromUnixTime(data?.city.sunrise ?? 1702517657), "H:mm")}
 							sunset={format(fromUnixTime(data?.city.sunset ?? 1702517657), "H:mm")}
 							visability={`${metersToKilometers(d?.visibility ?? 10000)} `}
-							windSpeed={`${convertWindSpeed(d?.wind.speed ?? 1.64)} `}
+							windSpeed={`${d?.wind.speed ?? 1.64} `}
 						/>
 					))}
 				</section>

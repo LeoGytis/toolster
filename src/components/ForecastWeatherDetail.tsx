@@ -1,7 +1,7 @@
 import React from "react";
 import WeatherIcon from "./WeatherIcon";
 import WeatherContainer from "./WeatherContainer";
-import { temperatureConverter } from "@/utils/temperatureConverter";
+import { temperatureConverter } from "@/app/weather/utils/temperatureConverter";
 import WeatherDetails, { WeatherDetailProps } from "./WeaterDetails";
 
 export interface ForecastWeatherDetailProps extends WeatherDetailProps {
