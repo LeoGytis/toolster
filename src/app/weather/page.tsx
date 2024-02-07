@@ -1,7 +1,7 @@
 "use client";
 
 import WeatherNavBar from "@/components/WeatherNavBar";
-import { WeatherDetail, WeatherData } from "./weatherInterfaces";
+import { WeatherDetailProps, WeatherDataProps } from "./weatherInterfaces";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect } from "react";
@@ -13,7 +13,7 @@ import WeatherIcon from "@/components/WeatherIcon";
 import { getDayOrNightIcon } from "@/utils/getDayOrNight";
 
 const Weather = () => {
-	const { isPending, error, data } = useQuery<WeatherData>({
+	const { isPending, error, data } = useQuery<WeatherDataProps>({
 		queryKey: ["repoData"],
 		queryFn: async () => {
 			const { data } = await axios.get(
@@ -81,6 +81,25 @@ const Weather = () => {
 								))}
 							</div>
 						</WeatherContainer>
+					</div>
+					<div className=" flex gap-4">
+						<WeatherContainer className="w-fit  justify-center flex-col px-4 items-center ">
+							<p className=" capitalize text-center">{firstData?.weather[0].description} </p>
+							<WeatherIcon
+								iconName={getDayOrNightIcon(firstData?.weather[0].icon ?? "", firstData?.dt_txt ?? "")}
+							/>
+						</WeatherContainer>
+						<WeatherContainer className="bg-yellow-300/80  px-6 gap-4 justify-between overflow-x-auto">
+							{/* <WeatherDetails
+								visability={metersToKilometers(firstData?.visibility ?? 10000)}
+								airPressure={`${firstData?.main.pressure} hPa`}
+								humidity={`${firstData?.main.humidity}%`}
+								sunrise={format(fromUnixTime(data?.city.sunrise ?? 1702949452), "H:mm")}
+								sunset={format(fromUnixTime(data?.city.sunset ?? 1702517657), "H:mm")}
+								windSpeed={convertWindSpeed(firstData?.wind.speed ?? 1.64)}
+							/> */}
+						</WeatherContainer>
+						{/* right  */}
 					</div>
 				</section>
 

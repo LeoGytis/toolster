@@ -1,4 +1,4 @@
-export interface WeatherDetail {
+export interface WeatherDetailProps {
   dt: number;
   main: {
     temp: number;
@@ -33,11 +33,11 @@ export interface WeatherDetail {
   dt_txt: string;
 }
 
-export interface WeatherData {
+export interface WeatherDataProps {
   cod: string;
   message: number;
   cnt: number;
-  list: WeatherDetail[];
+  list: WeatherDetailProps[];
   city: {
     id: number;
     name: string;
