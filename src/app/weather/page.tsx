@@ -163,6 +163,7 @@ const Weather = () => {
 							visability={`${metersToKilometers(d?.visibility ?? 10000)} `}
 							windSpeed={`${convertWindSpeed(d?.wind.speed ?? 1.64)} `}
 						/>
+						// <div key={i}>{d?.weather[0].description ?? ""}</div>
 					))}
 				</section>
 			</main>

@@ -1,8 +1,11 @@
 import React from "react";
 import WeatherIcon from "./WeatherIcon";
+import WeatherDetails from "./ForecastWeatherDetail";
 import WeatherContainer from "./WeatherContainer";
+// import { WeatherDetailProps } from "@/app/weather/weatherInterfaces";
 import { temperatureConverter } from "@/utils/temperatureConverter";
-import WeatherDetails, { WeatherDetailProps } from "./WeaterDetails";
+// import { ForecastWeatherDetailProps } from "@/app/weather/weatherInterfaces";
+import { WeatherDetailProps } from "./WeaterDetails";
 
 export interface ForecastWeatherDetailProps extends WeatherDetailProps {
 	weatehrIcon: string | "";
