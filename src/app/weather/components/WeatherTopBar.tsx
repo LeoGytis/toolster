@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import React, { ReactElement, ReactNode } from "react";
-import { MdMyLocation, MdOutlineLocationOn, MdWbSunny } from "react-icons/md";
+import { MdMyLocation, MdOutlineLocationOn } from "react-icons/md";
+import { TiWeatherPartlySunny } from "react-icons/ti";
 import SearchBox from "./SearchBox";
 import { useState } from "react";
 import axios from "axios";
@@ -88,7 +89,7 @@ const WeatherTopBar = ({ location }: Props) => {
 			<nav className="sticky top-0 left-0 z-50 bg-gray-200 shadow-md">
 				<div className="mx-auto max-w-7xl w-full h-16 flex justify-between items-center px-3 ">
 					<p className="flex items-center justify-center gap-2">
-						<MdWbSunny className="text-2xl mt-1 text-orange-500" />
+						<TiWeatherPartlySunny className="text-2xl mt-1 text-orange-500" />
 						<h2 className="text-gray-600 text-2xl">Weather</h2>
 					</p>
 					<section className="flex gap-2 items-center">
@@ -97,7 +98,7 @@ const WeatherTopBar = ({ location }: Props) => {
 							onClick={handleCurrentLocation}
 							className="text-2xl  text-gray-400 hover:opacity-80 cursor-pointer"
 						/>
-						<MdOutlineLocationOn className="text-2xl" />
+						<MdOutlineLocationOn className="text-2xl text-gray-500" />
 						<p className="text-slate-700 text-sm"> {location} </p>
 						<div className="relative hidden md:flex">
 							<SearchBox

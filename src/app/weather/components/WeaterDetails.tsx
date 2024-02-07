@@ -25,12 +25,12 @@ export default function WeatherDetails(props: WeatherDetailProps) {
 
 	return (
 		<>
+			<SingleWeatherDetail icon={<LuSunrise />} information="Sunrise" value={sunrise} />
+			<SingleWeatherDetail icon={<LuSunset />} information="Sunset" value={sunset} />
 			<SingleWeatherDetail icon={<LuEye />} information="Visability" value={visability} />
 			<SingleWeatherDetail icon={<FiDroplet />} information="Humidity" value={humidity} />
 			<SingleWeatherDetail icon={<MdAir />} information="Wind speed" value={windSpeed} />
 			<SingleWeatherDetail icon={<ImMeter />} information="Air Pressure" value={airPressure} />
-			<SingleWeatherDetail icon={<LuSunrise />} information="Sunrise" value={sunrise} />
-			<SingleWeatherDetail icon={<LuSunset />} information="Sunset" value={sunset} />
 		</>
 	);
 }
