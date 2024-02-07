@@ -73,7 +73,7 @@ const Weather = () => {
 
 	return (
 		<div className="text-black">
-			<WeatherNavBar />
+			<WeatherNavBar location={data?.city.name} />
 			<main className="max-w-7xl w-full mx-auto flex flex-col gap-9 pb-10 px-3 pt-4">
 				{/* ----- Today Section ----- */}
 				<section className="space-y-4 ">
