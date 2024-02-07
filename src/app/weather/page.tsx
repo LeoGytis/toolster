@@ -6,11 +6,14 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect } from "react";
 import { format } from "date-fns/format";
-import { parseISO } from "date-fns";
+import { fromUnixTime, parseISO } from "date-fns";
 import WeatherContainer from "@/components/WeatherContainer";
 import { temperatureConverter } from "@/utils/temperatureConverter";
 import WeatherIcon from "@/components/WeatherIcon";
 import { getDayOrNightIcon } from "@/utils/getDayOrNight";
+import { metersToKilometers } from "@/utils/metersToKilometers";
+import { convertWindSpeed } from "@/utils/convertWindSpeed";
+import WeatherDetails from "@/components/WeaterDetails";
 
 const Weather = () => {
 	const { isPending, error, data } = useQuery<WeatherDataProps>({
@@ -90,14 +93,14 @@ const Weather = () => {
 							/>
 						</WeatherContainer>
 						<WeatherContainer className="bg-yellow-300/80  px-6 gap-4 justify-between overflow-x-auto">
-							{/* <WeatherDetails
+							<WeatherDetails
 								visability={metersToKilometers(firstData?.visibility ?? 10000)}
 								airPressure={`${firstData?.main.pressure} hPa`}
 								humidity={`${firstData?.main.humidity}%`}
 								sunrise={format(fromUnixTime(data?.city.sunrise ?? 1702949452), "H:mm")}
 								sunset={format(fromUnixTime(data?.city.sunset ?? 1702517657), "H:mm")}
 								windSpeed={convertWindSpeed(firstData?.wind.speed ?? 1.64)}
-							/> */}
+							/>
 						</WeatherContainer>
 						{/* right  */}
 					</div>

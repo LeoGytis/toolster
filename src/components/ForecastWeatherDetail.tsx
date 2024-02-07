@@ -1,9 +1,9 @@
 import React from "react";
 import WeatherIcon from "./WeatherIcon";
-// import WeatherDetails, { WeatherDetailProps } from "./WeatherDetails";
+import WeatherDetails from "./ForecastWeatherDetail";
 import WeatherContainer from "./WeatherContainer";
-import { temperatureConverter } from "@/utils/temperatureConverter";
 import { WeatherDetailProps } from "@/app/weather/weatherInterfaces";
+import { temperatureConverter } from "@/utils/temperatureConverter";
 
 export interface ForecastWeatherDetailProps extends WeatherDetailProps {
 	weatehrIcon: string;
@@ -49,7 +49,7 @@ export default function ForecastWeatherDetail(props: ForecastWeatherDetailProps)
 			</section>
 			{/* right */}
 			<section className=" overflow-x-auto flex justify-between gap-4 px-4  w-full pr-10">
-				{/* <WeatherDetails {...props} /> */}
+				<WeatherDetails {...props} />
 			</section>
 		</WeatherContainer>
 	);
