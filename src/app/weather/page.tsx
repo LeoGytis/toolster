@@ -15,33 +15,39 @@ import { metersToKilometers } from "@/utils/metersToKilometers";
 import { convertWindSpeed } from "@/utils/convertWindSpeed";
 import WeatherDetails from "@/components/WeaterDetails";
 import ForecastWeatherDetail from "@/components/ForecastWeatherDetail";
+import { useAtom } from "jotai";
+import { loadingCityAtom, placeAtom } from "../atom";
+
+const API_KEY = process.env.NEXT_PUBLIC_WEATHER_KEY;
 
 const Weather = () => {
-	const { isPending, error, data } = useQuery<WeatherDataProps>({
+	const [place, setPlace] = useAtom(placeAtom);
+	const [loadingCity] = useAtom(loadingCityAtom);
+
+	const { isPending, error, data, refetch } = useQuery<WeatherDataProps>({
 		queryKey: ["repoData"],
 		queryFn: async () => {
 			const { data } = await axios.get(
-				`https://api.openweathermap.org/data/2.5/forecast?q=kaunas&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}&cnt=56`
+				`https://api.openweathermap.org/data/2.5/forecast?q=${place}&appid=${API_KEY}&cnt=56`
 			);
 			console.log(" data gauta -->", data);
 			return data;
 		},
 	});
-	// useEffect(() => {
-	// 	refetch();
-	// }, [place, refetch]);
+
+	useEffect(() => {
+		refetch();
+	}, [place, refetch]);
 
 	const firstData = data?.list[0];
 
 	// ---- Filter Unique Dates -----
-	// const uniqueDates = [...new Set(data?.list.map((entry) => new Date(entry.dt * 1000).toISOString().split("T")[0]))];
-	// console.log("🚀 ~ Weather ~ uniqueDates:", uniqueDates);
 	const uniqueDatesNew = data?.list
 		.map((entry) => new Date(entry.dt * 1000).toISOString().split("T")[0])
 		.filter((date, index, self) => self.indexOf(date) === index);
 	console.log("🚀 ~ Weather ~ uniqueDatesNew:", uniqueDatesNew);
 
-	// Filtering data to get the first entry after 6 AM for each unique date
+	// Filtering data to get the first entry after 6:00 for each unique date
 	const firstDataForEachDate = uniqueDatesNew?.map((date) => {
 		return data?.list.find((entry) => {
 			const entryDate = new Date(entry.dt * 1000).toISOString().split("T")[0];
@@ -49,17 +55,6 @@ const Weather = () => {
 			return entryDate === date && entryTime >= 6;
 		});
 	});
-	console.log("🚀 ~ firstDataForEachDate ~ firstDataForEachDate:", firstDataForEachDate);
-	// let firstDataForEachDate: WeatherEntry[] = [];
-	// if (uniqueDates) {
-	// 	firstDataForEachDate = uniqueDates.map((date) => {
-	// 		return data?.list.find((entry) => {
-	// 			const entryDate = new Date(entry.dt * 1000).toISOString().split("T")[0];
-	// 			const entryTime = new Date(entry.dt * 1000).getHours();
-	// 			return entryDate === date && entryTime >= 6;
-	// 		});
-	// 	}) as YourItemType[]; // Replace YourItemType with the actual type of the items in firstDataForEachDate
-	// }
 
 	if (isPending)
 		return (
@@ -67,6 +62,7 @@ const Weather = () => {
 				<p className="animate-bounce">Loading...</p>
 			</div>
 		);
+
 	if (error)
 		return (
 			<div className="flex items-center min-h-screen justify-center">
@@ -163,7 +159,6 @@ const Weather = () => {
 							visability={`${metersToKilometers(d?.visibility ?? 10000)} `}
 							windSpeed={`${convertWindSpeed(d?.wind.speed ?? 1.64)} `}
 						/>
-						// <div key={i}>{d?.weather[0].description ?? ""}</div>
 					))}
 				</section>
 			</main>
