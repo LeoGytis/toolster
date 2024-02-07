@@ -1,7 +1,7 @@
 "use client";
 
 import WeatherNavBar from "@/app/weather/components/WeatherNavBar";
-import { WeatherDetailProps, WeatherDataProps } from "./weatherInterfaces";
+import { WeatherDataProps } from "./types/weatherInterfaces";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect } from "react";
@@ -29,7 +29,7 @@ const Weather = () => {
 			const { data } = await axios.get(
 				`https://api.openweathermap.org/data/2.5/forecast?q=${place}&appid=${API_KEY}&cnt=56`
 			);
-			console.log(" data gauta -->", data);
+			console.log("🚀 ~ queryFn: ~ data:", data);
 			return data;
 		},
 	});
@@ -44,7 +44,6 @@ const Weather = () => {
 	const uniqueDatesNew = data?.list
 		.map((entry) => new Date(entry.dt * 1000).toISOString().split("T")[0])
 		.filter((date, index, self) => self.indexOf(date) === index);
-	console.log("🚀 ~ Weather ~ uniqueDatesNew:", uniqueDatesNew);
 
 	// Filtering data to get the first entry after 6:00 for each unique date
 	const firstDataForEachDate = uniqueDatesNew?.map((date) => {
