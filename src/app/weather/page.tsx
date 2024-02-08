@@ -115,7 +115,7 @@ const Weather = () => {
 							<p className=" capitalize text-center">{firstData?.weather[0].description} </p>
 							<WeatherIcon iconName={firstData?.weather[0].icon ?? ""} />
 						</WeatherWrapper>
-						<WeatherWrapper className="bg-yellow-200 px-6 gap-4 justify-between overflow-x-auto">
+						<WeatherWrapper className="bg-[#d4f593] px-6 gap-4 justify-between overflow-x-auto">
 							<WeatherDetails
 								visability={metersToKilometers(firstData?.visibility ?? 10000)}
 								airPressure={`${firstData?.main.pressure} hPa`}
