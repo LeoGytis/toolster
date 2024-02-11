@@ -16,6 +16,7 @@ import ForecastWeatherDetail from "@/app/weather/components/ForecastWeatherDetai
 import { useAtom } from "jotai";
 import { loadingCityAtom, placeAtom } from "../atom";
 import { MdOutlineLocationOn } from "react-icons/md";
+import sortDataToDays from "./utils/sortDataToDays";
 
 const API_KEY = process.env.NEXT_PUBLIC_WEATHER_KEY;
 
@@ -38,7 +39,7 @@ const Weather = () => {
 		refetch();
 	}, [place, refetch]);
 
-	const firstData = data?.list[0];
+	const todaysData = data?.list[0];
 
 	// ---- Filter Unique Dates -----
 	const uniqueDatesNew = data?.list
@@ -46,13 +47,15 @@ const Weather = () => {
 		.filter((date, index, self) => self.indexOf(date) === index);
 
 	// Filtering data to get the first entry after 6:00 for each unique date
-	const firstDataForEachDate = uniqueDatesNew?.map((date) => {
-		return data?.list.find((entry) => {
-			const entryDate = new Date(entry.dt * 1000).toISOString().split("T")[0];
-			const entryTime = new Date(entry.dt * 1000).getHours();
-			return entryDate === date && entryTime >= 6;
-		});
-	});
+	// const firstDataForEachDate = uniqueDatesNew?.map((date) => {
+	// 	return data?.list.find((entry) => {
+	// 		const entryDate = new Date(entry.dt * 1000).toISOString().split("T")[0];
+	// 		const entryTime = new Date(entry.dt * 1000).getHours();
+	// 		return entryDate === date && entryTime >= 6;
+	// 	});
+	// });
+
+	const firstDataForEachDate = data ? sortDataToDays(data) : undefined;
 
 	if (isPending)
 		return (
@@ -78,22 +81,22 @@ const Weather = () => {
 					<WeatherWrapper className="flex justify-between gap-16 bg-[#acca70] px-6">
 						<div className="flex gap-4">
 							<h2 className="flex flex-col items-center text-base">
-								<span>{format(parseISO(firstData?.dt_txt ?? ""), "yyyy.MM.dd")}</span>
-								<span>{format(parseISO(firstData?.dt_txt ?? ""), "EEEE")}</span>
+								<span>{format(parseISO(todaysData?.dt_txt ?? ""), "yyyy.MM.dd")}</span>
+								<span>{format(parseISO(todaysData?.dt_txt ?? ""), "EEEE")}</span>
 							</h2>
 							<div className="flex gap-2 items-center">
-								<WeatherIcon iconName={firstData?.weather[0].icon ?? ""} />
-								<span className="text-2xl">{temperatureConverter(firstData?.main.temp ?? 0)}°</span>
+								<WeatherIcon iconName={todaysData?.weather[0].icon ?? ""} />
+								<span className="text-2xl">{temperatureConverter(todaysData?.main.temp ?? 0)}°</span>
 							</div>
 						</div>
 
 						<WeatherDetails
 							sunrise={format(fromUnixTime(data?.city.sunrise ?? 0), "H:mm")}
 							sunset={format(fromUnixTime(data?.city.sunset ?? 0), "H:mm")}
-							windSpeed={`${firstData?.wind.speed ?? 0} m/s`}
-							airPressure={`${firstData?.main.pressure} hPa`}
-							visibility={`${metersToKilometers(firstData?.visibility ?? 0)} `}
-							humidity={`${firstData?.main.pressure ?? 0} hPa`}
+							windSpeed={`${todaysData?.wind.speed ?? 0} m/s`}
+							airPressure={`${todaysData?.main.pressure} hPa`}
+							visibility={`${metersToKilometers(todaysData?.visibility ?? 0)} `}
+							humidity={`${todaysData?.main.pressure ?? 0} hPa`}
 						/>
 					</WeatherWrapper>
 					{/* ----- Today's Forecast Section ----- */}

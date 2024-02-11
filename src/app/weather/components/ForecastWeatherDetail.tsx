@@ -27,11 +27,7 @@ export default function ForecastWeatherDetail(props: ForecastWeatherDetailProps)
 				</div>
 				<div className="flex flex-col px-4">
 					<span className="text-5xl">{temperatureConverter(temp ?? 0)}°</span>
-					<p className="text-xs space-x-1 whitespace-nowrap">
-						<span> Feels like</span>
-						<span>{temperatureConverter(feels_like ?? 0)}°</span>
-					</p>
-					<p className="capitalize"> {description}</p>
+					<p className="text-xs space-x-1 whitespace-nowrap"></p>
 				</div>
 			</section>
 			<section className="w-full overflow-x-auto flex justify-between gap-4 px-4 pr-10">
