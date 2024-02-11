@@ -42,20 +42,62 @@ const Weather = () => {
 	const todaysData = data?.list[0];
 
 	// ---- Filter Unique Dates -----
-	const uniqueDatesNew = data?.list
-		.map((entry) => new Date(entry.dt * 1000).toISOString().split("T")[0])
-		.filter((date, index, self) => self.indexOf(date) === index);
+	// const uniqueDatesNew = data?.list
+	// 	.map((entry) => new Date(entry.dt * 1000).toISOString().split("T")[0])
+	// 	.filter((date, index, self) => self.indexOf(date) === index);
 
 	// Filtering data to get the first entry after 6:00 for each unique date
 	// const firstDataForEachDate = uniqueDatesNew?.map((date) => {
 	// 	return data?.list.find((entry) => {
 	// 		const entryDate = new Date(entry.dt * 1000).toISOString().split("T")[0];
 	// 		const entryTime = new Date(entry.dt * 1000).getHours();
-	// 		return entryDate === date && entryTime >= 6;
+	// 		return entryDate === date && entryTime >= 0;
 	// 	});
 	// });
 
-	const firstDataForEachDate = data ? sortDataToDays(data) : undefined;
+	// const firstDataForEachDate = data ? sortDataToDays(data) : undefined;
+
+	const uniqueDates = data?.list.map((entry) => new Date(entry.dt * 1000).toISOString().split("T")[0]);
+	// const uniqueDatesFiltered = [...new Set(uniqueDates)];
+
+	const uniqueDatesArray: string[] = [];
+	uniqueDates?.forEach((date) => {
+		uniqueDatesArray.push(date);
+	});
+	const weatherWrappers: JSX.Element[] = [];
+
+	// Render each day's data and store WeatherWrapper components in the array
+	uniqueDatesArray.forEach((date, index) => {
+		// Filter data for the current date
+		const dayData = data?.list
+			.filter((entry) => {
+				const entryDate = new Date(entry.dt * 1000).toISOString().split("T")[0];
+				return entryDate === date;
+			})
+			.slice(0, 9); // Slice to get first 9 entries for each day
+
+		// Render WeatherWrapper component
+		const weatherWrapper = (
+			<WeatherWrapper key={index} className="px-6">
+				<div className="w-full justify-between overflow-x-auto flex gap-2 sm:gap-6">
+					{dayData?.map((d, i) => (
+						<div key={i} className="flex flex-col items-center text-xs font-semibold">
+							<p className="whitespace-nowrap">{format(parseISO(d.dt_txt), "HH:mm")}</p>
+							<WeatherIcon iconName={d.weather[0].icon} />
+							<p>{temperatureConverter(d?.main.temp ?? 0)}°</p>
+							<p>{d?.wind.speed ?? 0} m/s</p>
+						</div>
+					))}
+				</div>
+			</WeatherWrapper>
+		);
+
+		// Push WeatherWrapper component to the array
+		weatherWrappers.push(weatherWrapper);
+	});
+
+	const naujaData = data ? sortDataToDays(data) : undefined;
+	console.log("🚀 ~ Weather ~ naujaData -->:", naujaData);
 
 	if (isPending)
 		return (
@@ -116,7 +158,8 @@ const Weather = () => {
 				{/* ----- 7 Days Forcast Section ----- */}
 				<section className="flex w-full flex-col gap-4  ">
 					<p className="text-2xl">Forcast (7 days)</p>
-					{firstDataForEachDate?.map((d, i) => (
+					{weatherWrappers}
+					{/* {firstDataForEachDate?.map((d, i) => (
 						<ForecastWeatherDetail
 							key={i}
 							description={d?.weather[0].description ?? ""}
@@ -134,7 +177,7 @@ const Weather = () => {
 							visibility={`${metersToKilometers(d?.visibility ?? 10000)} `}
 							windSpeed={`${d?.wind.speed ?? 1.64} m/s`}
 						/>
-					))}
+					))} */}
 				</section>
 			</main>
 		</>
