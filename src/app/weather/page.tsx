@@ -11,7 +11,7 @@ import WeatherWrapper from "@/app/weather/components/WeatherWrapper";
 import { temperatureConverter } from "@/app/weather/utils/temperatureConverter";
 import WeatherIcon from "@/app/weather/components/WeatherIcon";
 import { metersToKilometers } from "@/app/weather/utils/metersToKilometers";
-import WeatherDetails from "@/app/weather/components/WeaterDetails";
+import WeatherDetails from "@/app/weather/components/WeatherDetails";
 import ForecastWeatherDetail from "@/app/weather/components/ForecastWeatherDetail";
 import { useAtom } from "jotai";
 import { loadingCityAtom, placeAtom } from "../atom";
@@ -28,7 +28,7 @@ const Weather = () => {
 			const { data } = await axios.get(
 				`https://api.openweathermap.org/data/2.5/forecast?q=${place}&appid=${API_KEY}&cnt=56`
 			);
-			console.log("🚀 ~ queryFn: ~ data:", data);
+			console.log("🚀 ~ DATA HERE:", data);
 			return data;
 		},
 	});
@@ -71,48 +71,40 @@ const Weather = () => {
 	return (
 		<>
 			<WeatherTopBar location={data?.city.name} />
-			<main className="max-w-full w-full mx-auto flex flex-col gap-9 pb-10 px-3 pt-4 bg-gray-100">
-				{/* ----- Today Section ----- */}
+			<main className="max-w-full w-full mx-auto flex flex-col gap-4 pb-10 px-3 pt-4 bg-gray-100">
 				<h2 className="flex gap-1 text-2xl items-end ">
 					<p className="text-base">{format(parseISO(firstData?.dt_txt ?? ""), "yyyy.MM.dd EEEE")}</p>
 				</h2>
-				<section className="space-y-4 ">
-					<div className=" flex gap-4">
-						<WeatherWrapper className="w-fit  justify-center flex-col px-4 items-center ">
-							<div className=" flex flex-col px-4">
-								<span className="text-5xl">
-									{temperatureConverter(firstData?.main.temp ?? 296.37)}°
-								</span>
-							</div>
-							<WeatherIcon iconName={firstData?.weather[0].icon ?? ""} />
-						</WeatherWrapper>
-						<WeatherWrapper className="bg-[#d4f593] px-6 gap-4 justify-between overflow-x-auto">
-							<WeatherDetails
-								sunrise={format(fromUnixTime(data?.city.sunrise ?? 1702949452), "H:mm")}
-								sunset={format(fromUnixTime(data?.city.sunset ?? 1702517657), "H:mm")}
-								windSpeed={`${firstData?.wind.speed ?? 1.64} m/s`}
-								airPressure={`${firstData?.main.pressure} hPa`}
-								// visability={metersToKilometers(firstData?.visibility ?? 10000)}
-								// humidity={`${firstData?.main.humidity}%`}
-							/>
-						</WeatherWrapper>
-					</div>
-					<div className="space-y-2">
-						<WeatherWrapper className="gap-10 px-6 items-center">
-							{/* ----- Today's Forecast Section ----- */}
-							<div className="w-full overflow-x-auto flex gap-2 sm:gap-4 pr-3 pb-2">
-								{data?.list.map((d, i) => (
-									<div key={i} className="flex flex-col items-center text-xs font-semibold ">
-										<WeatherIcon iconName={d.weather[0].icon} />
-										<p className="whitespace-nowrap">{format(parseISO(d.dt_txt), "HH:mm")}</p>
-										<p>{temperatureConverter(d?.main.temp ?? 0)}°</p>
-									</div>
-								))}
-							</div>
-						</WeatherWrapper>
-					</div>
+				{/* ----- Today Section ----- */}
+				<section className="space-y-4">
+					<WeatherWrapper className="flex justify-between gap-2 bg-[#acca70] px-6">
+						<span className="text-5xl">{temperatureConverter(firstData?.main.temp ?? 0)}°</span>
+						<WeatherIcon iconName={firstData?.weather[0].icon ?? ""} />
+						<WeatherDetails
+							sunrise={format(fromUnixTime(data?.city.sunrise ?? 0), "H:mm")}
+							sunset={format(fromUnixTime(data?.city.sunset ?? 0), "H:mm")}
+							windSpeed={`${firstData?.wind.speed ?? 1.64} m/s`}
+							airPressure={`${firstData?.main.pressure} hPa`}
+						/>
+						<span className="text-sm">{data?.city.name ?? ""}</span>
+					</WeatherWrapper>
+					<WeatherWrapper className="gap-10 px-6 items-center">
+						{/* ----- Today's Forecast Section ----- */}
+						<div className="w-full overflow-x-auto flex gap-2 sm:gap-4 pr-3 pb-2">
+							{data?.list.slice(0, 9).map((d, i) => (
+								<div key={i} className="flex flex-col items-center text-xs font-semibold ">
+									<WeatherIcon iconName={d.weather[0].icon} />
+									<p className="whitespace-nowrap">{format(parseISO(d.dt_txt), "HH:mm")}</p>
+									<p>{temperatureConverter(d?.main.temp ?? 0)}°</p>
+									<p>{d?.wind.speed ?? 0} m/s</p>
+									<p>{d?.wind.gust} gust</p>
+									<p>{d?.wind.deg} °</p>
+								</div>
+							))}
+						</div>
+					</WeatherWrapper>
 				</section>
-				{/* ----- 7 days forcast data ----- */}
+				{/* ----- 7 Days Forcast Section ----- */}
 				<section className="flex w-full flex-col gap-4  ">
 					<p className="text-2xl">Forcast (7 days)</p>
 					{firstDataForEachDate?.map((d, i) => (

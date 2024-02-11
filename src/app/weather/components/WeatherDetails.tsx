@@ -34,7 +34,7 @@ export interface SingleWeatherDetailProps {
 	value: string;
 }
 
-function SingleWeatherDetail(props: SingleWeatherDetailProps) {
+const SingleWeatherDetail = (props: SingleWeatherDetailProps) => {
 	return (
 		<div className="flex flex-col justify-between gap-2 items-center text-xs font-semibold text-black/80">
 			<div className="text-3xl">{props.icon}</div>
@@ -42,4 +42,4 @@ function SingleWeatherDetail(props: SingleWeatherDetailProps) {
 			<p>{props.value}</p>
 		</div>
 	);
-}
+};
