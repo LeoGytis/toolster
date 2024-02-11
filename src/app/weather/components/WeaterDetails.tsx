@@ -5,35 +5,28 @@ import { MdAir } from "react-icons/md";
 import { ImMeter } from "react-icons/im";
 
 export interface WeatherDetailProps {
-	visability: string;
-	humidity: string;
-	windSpeed: string;
-	airPressure: string;
 	sunrise: string;
 	sunset: string;
+	windSpeed: string;
+	airPressure: string;
+	visability?: string;
+	humidity?: string;
 }
 
-export default function WeatherDetails(props: WeatherDetailProps) {
-	const {
-		visability = "25km",
-		humidity = "61%",
-		windSpeed = "7 km/h",
-		airPressure = "1012 hPa",
-		sunrise = "6.20",
-		sunset = "18:48",
-	} = props;
-
+const WeatherDetails = ({ sunrise, sunset, windSpeed, airPressure, visability, humidity }: WeatherDetailProps) => {
 	return (
 		<>
 			<SingleWeatherDetail icon={<LuSunrise />} information="Sunrise" value={sunrise} />
 			<SingleWeatherDetail icon={<LuSunset />} information="Sunset" value={sunset} />
-			<SingleWeatherDetail icon={<LuEye />} information="Visability" value={visability} />
-			<SingleWeatherDetail icon={<FiDroplet />} information="Humidity" value={humidity} />
 			<SingleWeatherDetail icon={<MdAir />} information="Wind speed" value={windSpeed} />
 			<SingleWeatherDetail icon={<ImMeter />} information="Air Pressure" value={airPressure} />
+			{visability && <SingleWeatherDetail icon={<LuEye />} information="Visability" value={visability} />}
+			{humidity && <SingleWeatherDetail icon={<FiDroplet />} information="Humidity" value={humidity} />}
 		</>
 	);
-}
+};
+
+export default WeatherDetails;
 
 export interface SingleWeatherDetailProps {
 	information: string;
@@ -44,8 +37,8 @@ export interface SingleWeatherDetailProps {
 function SingleWeatherDetail(props: SingleWeatherDetailProps) {
 	return (
 		<div className="flex flex-col justify-between gap-2 items-center text-xs font-semibold text-black/80">
-			<p className="whitespace-nowrap">{props.information}</p>
 			<div className="text-3xl">{props.icon}</div>
+			<p className="whitespace-nowrap">{props.information}</p>
 			<p>{props.value}</p>
 		</div>
 	);

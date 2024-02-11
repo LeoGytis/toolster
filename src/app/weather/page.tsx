@@ -73,31 +73,32 @@ const Weather = () => {
 			<WeatherTopBar location={data?.city.name} />
 			<main className="max-w-full w-full mx-auto flex flex-col gap-9 pb-10 px-3 pt-4 bg-gray-100">
 				{/* ----- Today Section ----- */}
+				<h2 className="flex gap-1 text-2xl items-end ">
+					<p className="text-base">{format(parseISO(firstData?.dt_txt ?? ""), "yyyy.MM.dd EEEE")}</p>
+				</h2>
 				<section className="space-y-4 ">
-					<div className="space-y-2">
-						<h2 className="flex gap-1 text-2xl items-end ">
-							<p className="text-base">{format(parseISO(firstData?.dt_txt ?? ""), "yyyy.MM.dd EEEE")}</p>
-						</h2>
-						<WeatherWrapper className="gap-10 px-6 items-center">
+					<div className=" flex gap-4">
+						<WeatherWrapper className="w-fit  justify-center flex-col px-4 items-center ">
 							<div className=" flex flex-col px-4">
 								<span className="text-5xl">
 									{temperatureConverter(firstData?.main.temp ?? 296.37)}°
 								</span>
-								<p className="text-xs space-x-1 whitespace-nowrap">
-									<span> Feels like</span>
-									<span>{temperatureConverter(firstData?.main.feels_like ?? 0)}°</span>
-								</p>
-								<p className="text-xs space-x-2">
-									<span>
-										{temperatureConverter(firstData?.main.temp_min ?? 0)}
-										°↓
-									</span>
-									<span>
-										{temperatureConverter(firstData?.main.temp_max ?? 0)}
-										°↑
-									</span>
-								</p>
 							</div>
+							<WeatherIcon iconName={firstData?.weather[0].icon ?? ""} />
+						</WeatherWrapper>
+						<WeatherWrapper className="bg-[#d4f593] px-6 gap-4 justify-between overflow-x-auto">
+							<WeatherDetails
+								sunrise={format(fromUnixTime(data?.city.sunrise ?? 1702949452), "H:mm")}
+								sunset={format(fromUnixTime(data?.city.sunset ?? 1702517657), "H:mm")}
+								windSpeed={`${firstData?.wind.speed ?? 1.64} m/s`}
+								airPressure={`${firstData?.main.pressure} hPa`}
+								// visability={metersToKilometers(firstData?.visibility ?? 10000)}
+								// humidity={`${firstData?.main.humidity}%`}
+							/>
+						</WeatherWrapper>
+					</div>
+					<div className="space-y-2">
+						<WeatherWrapper className="gap-10 px-6 items-center">
 							{/* ----- Today's Forecast Section ----- */}
 							<div className="w-full overflow-x-auto flex gap-2 sm:gap-4 pr-3 pb-2">
 								{data?.list.map((d, i) => (
@@ -110,24 +111,8 @@ const Weather = () => {
 							</div>
 						</WeatherWrapper>
 					</div>
-					<div className=" flex gap-4">
-						<WeatherWrapper className="w-fit  justify-center flex-col px-4 items-center ">
-							<p className=" capitalize text-center">{firstData?.weather[0].description} </p>
-							<WeatherIcon iconName={firstData?.weather[0].icon ?? ""} />
-						</WeatherWrapper>
-						<WeatherWrapper className="bg-[#d4f593] px-6 gap-4 justify-between overflow-x-auto">
-							<WeatherDetails
-								visability={metersToKilometers(firstData?.visibility ?? 10000)}
-								airPressure={`${firstData?.main.pressure} hPa`}
-								humidity={`${firstData?.main.humidity}%`}
-								sunrise={format(fromUnixTime(data?.city.sunrise ?? 1702949452), "H:mm")}
-								sunset={format(fromUnixTime(data?.city.sunset ?? 1702517657), "H:mm")}
-								windSpeed={`${firstData?.wind.speed ?? 1.64} m/s`}
-							/>
-						</WeatherWrapper>
-					</div>
 				</section>
-				{/* 7 day forcast data  */}
+				{/* ----- 7 days forcast data ----- */}
 				<section className="flex w-full flex-col gap-4  ">
 					<p className="text-2xl">Forcast (7 days)</p>
 					{firstDataForEachDate?.map((d, i) => (
