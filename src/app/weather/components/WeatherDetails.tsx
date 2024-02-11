@@ -9,18 +9,18 @@ export interface WeatherDetailProps {
 	sunset: string;
 	windSpeed: string;
 	airPressure: string;
-	visability?: string;
+	visibility?: string;
 	humidity?: string;
 }
 
-const WeatherDetails = ({ sunrise, sunset, windSpeed, airPressure, visability, humidity }: WeatherDetailProps) => {
+const WeatherDetails = ({ sunrise, sunset, windSpeed, airPressure, visibility, humidity }: WeatherDetailProps) => {
 	return (
 		<>
 			<SingleWeatherDetail icon={<LuSunrise />} information="Sunrise" value={sunrise} />
 			<SingleWeatherDetail icon={<LuSunset />} information="Sunset" value={sunset} />
 			<SingleWeatherDetail icon={<MdAir />} information="Wind speed" value={windSpeed} />
 			<SingleWeatherDetail icon={<ImMeter />} information="Air Pressure" value={airPressure} />
-			{visability && <SingleWeatherDetail icon={<LuEye />} information="Visability" value={visability} />}
+			{visibility && <SingleWeatherDetail icon={<LuEye />} information="Visibility" value={visibility} />}
 			{humidity && <SingleWeatherDetail icon={<FiDroplet />} information="Humidity" value={humidity} />}
 		</>
 	);
