@@ -88,10 +88,10 @@ const WeatherTopBar = ({ location }: Props) => {
 		<>
 			<nav className="sticky top-0 left-0 z-50 bg-gray-200 shadow-md">
 				<div className="mx-auto max-w-7xl w-full h-16 flex justify-between items-center px-3 ">
-					<p className="flex items-center justify-center gap-2">
+					<div className="flex items-center justify-center gap-2">
 						<TiWeatherPartlySunny className="text-2xl mt-1 text-[#9acd32]" />
 						<h2 className="text-gray-600 text-2xl">Weather</h2>
-					</p>
+					</div>
 					<section className="flex gap-2 items-center">
 						<MdMyLocation
 							title="Your Current Location"

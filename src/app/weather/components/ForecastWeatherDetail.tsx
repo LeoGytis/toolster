@@ -21,7 +21,7 @@ export default function ForecastWeatherDetail(props: ForecastWeatherDetailProps)
 		<WeatherWrapper className="gap-4">
 			<section className=" flex gap-4 items-center px-4  ">
 				<div className=" flex flex-col gap-1 items-center">
-					<WeatherIcon iconName={weatehrIcon} />
+					<WeatherIcon iconname={weatehrIcon} />
 					<p>{date}</p>
 					<p className="text-sm">{day} </p>
 				</div>
