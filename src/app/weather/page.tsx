@@ -35,6 +35,28 @@ const Weather = () => {
 		},
 	});
 
+	// async function getUsers() {
+	// 	return (await fetch("https://jsonplaceholder.typicode.com/users").then((res) => res.json())) as any[];
+	// }
+
+	// const { data } = useQuery<any[]>({
+	// 	queryKey: ["stream-hydrate-users"],
+	// 	queryFn: () => getUsers(),
+	// 	suspense: true,
+	// 	staleTime: 5 * 1000,
+	// });
+
+	// const { isPending, error, data, refetch } = useQuery<WeatherDataProps>({
+	// 	queryKey: ["repoData"],
+	// 	queryFn: async () => {
+	// 		const { data } = await axios.get(
+	// 			`https://api.openweathermap.org/data/2.5/forecast?q=${place}&appid=${API_KEY}&cnt=56`
+	// 		);
+	// 		console.log("🚀 ~ DATA HERE:", data);
+	// 		return data;
+	// 	},
+	// });
+
 	useEffect(() => {
 		refetch();
 	}, [place, refetch]);
