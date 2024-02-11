@@ -13,3 +13,10 @@ Everything I need organizing my time in just one place.
 - React-Icons 
 - Axios
 - API
+
+
+## More
+Weather Section: <br>
+Big thanks to: [@whoisseth](https://github.com/whoisseth) <br>
+https://github.com/whoisseth/weather-app-nextjs <br>
+https://www.youtube.com/watch?v=KkC_wYM_Co4 <br>
