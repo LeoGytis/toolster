@@ -36,10 +36,10 @@ export interface SingleWeatherDetailProps {
 
 const SingleWeatherDetail = (props: SingleWeatherDetailProps) => {
 	return (
-		<div className="flex flex-col justify-between gap-2 items-center text-xs font-semibold text-black/80">
+		<div className="flex flex-col gap-2 items-center text-xs font-semibold text-black">
 			<div className="text-3xl">{props.icon}</div>
-			<p className="whitespace-nowrap">{props.information}</p>
-			<p>{props.value}</p>
+			{/* <p className="whitespace-nowrap">{props.information}</p> */}
+			<p className="pt-2">{props.value}</p>
 		</div>
 	);
 };
