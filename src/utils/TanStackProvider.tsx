@@ -10,7 +10,7 @@ const TanStackProvider = ({ children }: any) => {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<ReactQueryStreamedHydration>{children}</ReactQueryStreamedHydration>
-			<ReactQueryDevtools initialIsOpen={false} />
+			{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 		</QueryClientProvider>
 	);
 };
