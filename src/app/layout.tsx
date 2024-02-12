@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavMenu from "../components/NavMenu";
-import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
-import { Provider } from "jotai";
 import TanStackProvider from "./weather/utils/TanStackProvider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -17,7 +15,6 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-	const queryClient = new QueryClient();
 	return (
 		<html lang="en">
 			<TanStackProvider>

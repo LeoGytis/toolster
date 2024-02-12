@@ -17,6 +17,7 @@ import { useAtom } from "jotai";
 import { loadingCityAtom, placeAtom } from "../atom";
 import { MdOutlineLocationOn } from "react-icons/md";
 import sortDataToDays from "./utils/sortDataToDays";
+import dayData from "./utils/dayData";
 
 const API_KEY = process.env.NEXT_PUBLIC_WEATHER_KEY;
 
@@ -103,8 +104,11 @@ const Weather = () => {
 
 	// const firstDataForEachDate = data ? sortDataToDays(data) : undefined;
 
-	const naujaData = data ? sortDataToDays(data) : undefined;
-	console.log("🚀 ~ Weather ~ naujaData -->:", naujaData);
+	const daysData = data ? dayData(data) : undefined;
+	console.log("🚀 ~ Weather ~ daysData:", daysData);
+
+	// const naujaData = data ? sortDataToDays(data) : undefined;
+	// console.log("🚀 ~ Weather ~ naujaData -->:", naujaData);
 
 	if (isPending)
 		return (
@@ -165,6 +169,19 @@ const Weather = () => {
 				{/* ----- 7 Days Forcast Section ----- */}
 				<section className="flex w-full flex-col gap-4  ">
 					<p className="text-2xl">Forcast (7 days)</p>
+
+					{daysData?.map((day: any, dayIndex: any) => (
+						<div key={dayIndex} className="w-full justify-between overflow-x-auto flex gap-2 sm:gap-6">
+							{day.map((d: any, i: any) => (
+								<div key={i} className="flex flex-col items-center text-xs font-semibold ">
+									<p className="whitespace-nowrap">{format(parseISO(d.dt_txt), "HH:mm")}</p>
+									<p>{temperatureConverter(d?.main.temp ?? 0)}°</p>
+									<p>{d?.wind.speed ?? 0} m/s</p>
+								</div>
+							))}
+						</div>
+					))}
+
 					{/* {weatherWrappers} */}
 					{/* {firstDataForEachDate?.map((d, i) => (
 						<ForecastWeatherDetail
