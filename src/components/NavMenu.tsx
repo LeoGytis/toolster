@@ -16,12 +16,12 @@ import { MdOutlineTimer } from "react-icons/md";
 
 export const navLinksData = [
 	{ item: "weather", icon: <TiWeatherPartlySunny /> },
-	{ item: "time-tracker", icon: <MdOutlineTimer /> },
+	{ item: "time", icon: <MdOutlineTimer /> },
 	{ item: "dashboard", icon: <BiSolidDashboard /> },
 	{ item: "mobiles", icon: <FaMobileRetro /> },
 	{ item: "countries", icon: <FaGlobeAmericas /> },
 	{ item: "cars", icon: <IoCarSharp /> },
-	{ item: "social-media", icon: <FaMobileRetro /> },
+	{ item: "social", icon: <FaMobileRetro /> },
 	{ item: "recruitment", icon: <MdPersonSearch /> },
 	{ item: "schedule", icon: <BsCalendar3 /> },
 	{ item: "employee", icon: <FaPeopleGroup /> },
@@ -61,7 +61,12 @@ const NavLink = ({ icon, item }: NavLinkProps) => {
 		<Link href={href}>
 			<div className={`flex ${pathname === href ? "text-[#9acd32]" : "unset"}`}>
 				{React.cloneElement(icon, { className: "mt-1 mr-4" })}
-				<div className="hidden md:flex capitalize">{item}</div>
+				<div className="hidden md:flex capitalize">
+					{item
+						.split("-")
+						.map((word) => word.charAt(0) + word.slice(1))
+						.join(" ")}
+				</div>
 			</div>
 		</Link>
 	);
