@@ -3,7 +3,7 @@
 Project WebPage: https://leogytis.github.io/toolster/ <br>
 
 Toolster is a convienient platform to keep myself iformed about the stats I care about.
-Everything I need organizing my time in just one place. 
+Everything I need organizing my time in just one place.
 		
 ## Technologies Used
 
@@ -13,6 +13,7 @@ Everything I need organizing my time in just one place.
 - React-Icons 
 - Axios
 - API
+- TanStack Query
 
 
 ## More
