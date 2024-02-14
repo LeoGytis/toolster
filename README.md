@@ -13,6 +13,7 @@ Everything I need organizing my time in just one place.
 - React-Icons 
 - Axios
 - API
+- TanStack Query
 
 
 ## More
