@@ -4,8 +4,8 @@ interface DayWeatherData {
 	[date: string]: WeatherDetailProps[];
 }
 
-const dayData = (data: WeatherDataProps): DayWeatherData => {
-	const dayWeatherData: DayWeatherData = {};
+const dayData = (data: WeatherDataProps) => {
+	const dayWeatherData: { [date: string]: WeatherDetailProps[] } = {};
 
 	data.list.forEach((entry: WeatherDetailProps) => {
 		const date = new Date(entry.dt * 1000).toISOString().split("T")[0];
@@ -16,7 +16,6 @@ const dayData = (data: WeatherDataProps): DayWeatherData => {
 
 		dayWeatherData[date].push(entry);
 	});
-	console.log("🚀 ~ dayData ~ dayWeatherData:", dayWeatherData);
 
 	return dayWeatherData;
 };

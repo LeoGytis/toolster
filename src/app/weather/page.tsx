@@ -1,7 +1,7 @@
 "use client";
 
 import WeatherTopBar from "@/app/weather/components/WeatherTopBar";
-import { WeatherDataProps } from "./types/weatherInterfaces";
+import { WeatherDataProps, WeatherDetailProps } from "./types/weatherInterfaces";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect } from "react";
@@ -35,28 +35,6 @@ const Weather = () => {
 			return data;
 		},
 	});
-
-	// async function getUsers() {
-	// 	return (await fetch("https://jsonplaceholder.typicode.com/users").then((res) => res.json())) as any[];
-	// }
-
-	// const { data } = useQuery<any[]>({
-	// 	queryKey: ["stream-hydrate-users"],
-	// 	queryFn: () => getUsers(),
-	// 	suspense: true,
-	// 	staleTime: 5 * 1000,
-	// });
-
-	// const { isPending, error, data, refetch } = useQuery<WeatherDataProps>({
-	// 	queryKey: ["repoData"],
-	// 	queryFn: async () => {
-	// 		const { data } = await axios.get(
-	// 			`https://api.openweathermap.org/data/2.5/forecast?q=${place}&appid=${API_KEY}&cnt=56`
-	// 		);
-	// 		console.log("🚀 ~ DATA HERE:", data);
-	// 		return data;
-	// 	},
-	// });
 
 	useEffect(() => {
 		refetch();
@@ -104,7 +82,11 @@ const Weather = () => {
 
 	// const firstDataForEachDate = data ? sortDataToDays(data) : undefined;
 
-	const daysData = data ? dayData(data) : undefined;
+	// const daysData = data ? dayData(data) : undefined;
+
+	// const daysData = dayData(data);
+
+	const daysData = data ? dayData(data) : [];
 	console.log("🚀 ~ Weather ~ daysData:", daysData);
 
 	// const naujaData = data ? sortDataToDays(data) : undefined;
@@ -170,17 +152,17 @@ const Weather = () => {
 				<section className="flex w-full flex-col gap-4  ">
 					<p className="text-2xl">Forcast (7 days)</p>
 
-					{daysData?.map((day: any, dayIndex: any) => (
+					{/* {Object.keys(daysData).map((date, dayIndex) => (
 						<div key={dayIndex} className="w-full justify-between overflow-x-auto flex gap-2 sm:gap-6">
-							{day.map((d: any, i: any) => (
-								<div key={i} className="flex flex-col items-center text-xs font-semibold ">
+							{daysData[dayIndex].map((d: WeatherDetailProps, i: number) => (
+								<div key={i} className="flex flex-col items-center text-xs font-semibold">
 									<p className="whitespace-nowrap">{format(parseISO(d.dt_txt), "HH:mm")}</p>
-									<p>{temperatureConverter(d?.main.temp ?? 0)}°</p>
-									<p>{d?.wind.speed ?? 0} m/s</p>
+									<p>{temperatureConverter(d.main.temp ?? 0)}°</p>
+									<p>{d.wind.speed ?? 0} m/s</p>
 								</div>
 							))}
 						</div>
-					))}
+					))} */}
 
 					{/* {weatherWrappers} */}
 					{/* {firstDataForEachDate?.map((d, i) => (
