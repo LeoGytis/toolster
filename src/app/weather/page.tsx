@@ -36,25 +36,11 @@ const Weather = () => {
 		},
 	});
 
-	// Assuming data is an object of type WeatherDetailProps
-	// data?.list.forEach((weatherDetail) => {
-	// 	const windSpeed = weatherDetail.wind.speed;
-	// 	console.log(windSpeed); // Use windSpeed as needed
-	// });
-
 	useEffect(() => {
 		refetch();
 	}, [place, refetch]);
 
 	const todaysData = data?.list[0];
-
-	// const uniqueDates = data?.list.map((entry) => new Date(entry.dt * 1000).toISOString().split("T")[0]);
-
-	// const uniqueDatesArray: string[] = [];
-	// uniqueDates?.forEach((date) => {
-	// 	uniqueDatesArray.push(date);
-	// });
-
 	const uniqueDates: string[] = [];
 
 	if (data?.list) {
@@ -68,52 +54,6 @@ const Weather = () => {
 			}, [])
 		);
 	}
-
-	console.log("🚀 :: Weather :: uniqueDates ::", uniqueDates);
-
-	// const uniqueDatesArray = uniqueDates.slice(1);
-
-	const weatherWrappers: JSX.Element[] = [];
-
-	// Render each day's data and store WeatherWrapper components in the array
-	// uniqueDatesArray.forEach((date, index) => {
-	// 	// Filter data for the current date
-	// 	const dayData = data?.list
-	// 		.filter((entry) => {
-	// 			const entryDate = new Date(entry.dt * 1000).toISOString().split("T")[0];
-	// 			return entryDate === date;
-	// 		})
-	// 		.slice(0, 9); // Slice to get first 9 entries for each day
-
-	// 	// Render WeatherWrapper component
-	// 	const weatherWrapper = (
-	// 		<WeatherWrapper key={index} className="px-6">
-	// 			<div className="w-full justify-between overflow-x-auto flex gap-2 sm:gap-6">
-	// 				{dayData?.map((d, i) => (
-	// 					<div key={i} className="flex flex-col items-center text-xs font-semibold">
-	// 						<p className="whitespace-nowrap">{format(parseISO(d.dt_txt), "HH:mm")}</p>
-	// 						<WeatherIcon iconname={d.weather[0].icon} />
-	// 						<p>{temperatureConverter(d?.main.temp ?? 0)}°</p>
-	// 						<p>{d?.wind.speed ?? 0} m/s</p>
-	// 					</div>
-	// 				))}
-	// 			</div>
-	// 		</WeatherWrapper>
-	// 	);
-
-	// 	// Push WeatherWrapper component to the array
-	// 	weatherWrappers.push(weatherWrapper);
-	// });
-
-	// const firstDataForEachDate = data ? sortDataToDays(data) : undefined;
-
-	// const daysData = data ? dayData(data) : undefined;
-
-	// const daysData = dayData(data);
-
-	// ____________________________________________________________________
-	// const daysData = data ? dayData(data) : [];
-	// console.log("🚀 ~ Weather ~ daysData:", daysData);
 
 	if (isPending)
 		return (
@@ -176,15 +116,13 @@ const Weather = () => {
 					<p className="text-2xl">Forcast (7 days)</p>
 
 					{uniqueDates.slice(1).map((date, index) => {
-						// Filter data for the current date
 						const dayData = data?.list
 							.filter((entry) => {
 								const entryDate = new Date(entry.dt * 1000).toISOString().split("T")[0];
 								return entryDate === date;
 							})
-							.slice(0, 9); // Slice to get first 9 entries for each day
+							.slice(0, 9);
 
-						// Render WeatherWrapper component
 						return (
 							<WeatherWrapper key={index} className="px-6">
 								<div className="w-full justify-between overflow-x-auto flex gap-2 sm:gap-6">
@@ -200,39 +138,6 @@ const Weather = () => {
 							</WeatherWrapper>
 						);
 					})}
-
-					{/* {Object.keys(daysData).map((date, dayIndex) => (
-						<div key={dayIndex} className="w-full justify-between overflow-x-auto flex gap-2 sm:gap-6">
-							{daysData[dayIndex].map((d: WeatherDetailProps, i: number) => (
-								<div key={i} className="flex flex-col items-center text-xs font-semibold">
-									<p className="whitespace-nowrap">{format(parseISO(d.dt_txt), "HH:mm")}</p>
-									<p>{temperatureConverter(d.main.temp ?? 0)}°</p>
-									<p>{d.wind.speed ?? 0} m/s</p>
-								</div>
-							))}
-						</div>
-					))} */}
-
-					{/* {weatherWrappers} */}
-					{/* {firstDataForEachDate?.map((d, i) => (
-						<ForecastWeatherDetail
-							key={i}
-							description={d?.weather[0].description ?? ""}
-							weatehrIcon={d?.weather[0].icon ?? "01d"}
-							date={format(parseISO(d?.dt_txt ?? ""), "dd.MM")}
-							day={format(parseISO(d?.dt_txt ?? ""), "EEEE")}
-							feels_like={d?.main.feels_like ?? 0}
-							temp={d?.main.temp ?? 0}
-							temp_max={d?.main.temp_max ?? 0}
-							temp_min={d?.main.temp_min ?? 0}
-							airPressure={`${d?.main.pressure} hPa `}
-							humidity={`${d?.main.humidity}% `}
-							sunrise={format(fromUnixTime(data?.city.sunrise ?? 1702517657), "H:mm")}
-							sunset={format(fromUnixTime(data?.city.sunset ?? 1702517657), "H:mm")}
-							visibility={`${metersToKilometers(d?.visibility ?? 10000)} `}
-							windSpeed={`${d?.wind.speed ?? 1.64} m/s`}
-						/>
-					))} */}
 				</section>
 			</main>
 		</>
