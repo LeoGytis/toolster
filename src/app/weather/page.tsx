@@ -36,6 +36,12 @@ const Weather = () => {
 		},
 	});
 
+	// Assuming data is an object of type WeatherDetailProps
+	// data?.list.forEach((weatherDetail) => {
+	// 	const windSpeed = weatherDetail.wind.speed;
+	// 	console.log(windSpeed); // Use windSpeed as needed
+	// });
+
 	useEffect(() => {
 		refetch();
 	}, [place, refetch]);
@@ -48,9 +54,28 @@ const Weather = () => {
 	// uniqueDates?.forEach((date) => {
 	// 	uniqueDatesArray.push(date);
 	// });
-	// const weatherWrappers: JSX.Element[] = [];
 
-	// // Render each day's data and store WeatherWrapper components in the array
+	const uniqueDates: string[] = [];
+
+	if (data?.list) {
+		uniqueDates.push(
+			...data.list.reduce((dates: string[], entry) => {
+				const entryDate = new Date(entry.dt * 1000).toISOString().split("T")[0];
+				if (!dates.includes(entryDate)) {
+					dates.push(entryDate);
+				}
+				return dates;
+			}, [])
+		);
+	}
+
+	console.log("🚀 :: Weather :: uniqueDates ::", uniqueDates);
+
+	// const uniqueDatesArray = uniqueDates.slice(1);
+
+	const weatherWrappers: JSX.Element[] = [];
+
+	// Render each day's data and store WeatherWrapper components in the array
 	// uniqueDatesArray.forEach((date, index) => {
 	// 	// Filter data for the current date
 	// 	const dayData = data?.list
@@ -86,11 +111,9 @@ const Weather = () => {
 
 	// const daysData = dayData(data);
 
-	const daysData = data ? dayData(data) : [];
-	console.log("🚀 ~ Weather ~ daysData:", daysData);
-
-	// const naujaData = data ? sortDataToDays(data) : undefined;
-	// console.log("🚀 ~ Weather ~ naujaData -->:", naujaData);
+	// ____________________________________________________________________
+	// const daysData = data ? dayData(data) : [];
+	// console.log("🚀 ~ Weather ~ daysData:", daysData);
 
 	if (isPending)
 		return (
@@ -151,6 +174,32 @@ const Weather = () => {
 				{/* ----- 7 Days Forcast Section ----- */}
 				<section className="flex w-full flex-col gap-4  ">
 					<p className="text-2xl">Forcast (7 days)</p>
+
+					{uniqueDates.slice(1).map((date, index) => {
+						// Filter data for the current date
+						const dayData = data?.list
+							.filter((entry) => {
+								const entryDate = new Date(entry.dt * 1000).toISOString().split("T")[0];
+								return entryDate === date;
+							})
+							.slice(0, 9); // Slice to get first 9 entries for each day
+
+						// Render WeatherWrapper component
+						return (
+							<WeatherWrapper key={index} className="px-6">
+								<div className="w-full justify-between overflow-x-auto flex gap-2 sm:gap-6">
+									{dayData?.map((d, i) => (
+										<div key={i} className="flex flex-col items-center text-xs font-semibold">
+											<p className="whitespace-nowrap">{format(parseISO(d.dt_txt), "HH:mm")}</p>
+											<WeatherIcon iconname={d.weather[0].icon} />
+											<p>{temperatureConverter(d?.main.temp ?? 0)}°</p>
+											<p>{d?.wind.speed ?? 0} m/s</p>
+										</div>
+									))}
+								</div>
+							</WeatherWrapper>
+						);
+					})}
 
 					{/* {Object.keys(daysData).map((date, dayIndex) => (
 						<div key={dayIndex} className="w-full justify-between overflow-x-auto flex gap-2 sm:gap-6">
