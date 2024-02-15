@@ -2,14 +2,15 @@
 
 const nextConfig = {
 	output: 'export',
-	// images: {
-	// 	remotePatterns: [
-	// 		{
-	// 			protocol: "https",
-	// 			hostname: "openweathermap.org",
-	// 		},
-	// 	],
-	// },
+	images: {
+		unoptimized: true,
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "openweathermap.org",
+			},
+		],
+	},
 };
 
 module.exports = nextConfig;
