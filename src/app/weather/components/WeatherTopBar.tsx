@@ -10,7 +10,8 @@ import { loadingCityAtom, placeAtom } from "@/app/atom";
 import { useAtom } from "jotai";
 
 type Props = { location?: string };
-const API_KEY = process.env.NEXT_PUBLIC_WEATHER_KEY;
+// const API_KEY = process.env.NEXT_PUBLIC_WEATHER_KEY;
+const API_KEY = 'bd363a0a91d6c85203270ce61960c38a';
 
 const WeatherTopBar = ({ location }: Props) => {
 	const [city, setCity] = useState("");

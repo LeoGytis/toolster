@@ -1,7 +1,7 @@
 "use client";
 
 import WeatherTopBar from "@/app/weather/components/WeatherTopBar";
-import { WeatherDataProps, WeatherDetailProps } from "./types/weatherInterfaces";
+import { WeatherDataProps } from "./types/weatherInterfaces";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect } from "react";
@@ -12,14 +12,11 @@ import { temperatureConverter } from "@/app/weather/utils/temperatureConverter";
 import WeatherIcon from "@/app/weather/components/WeatherIcon";
 import { metersToKilometers } from "@/app/weather/utils/metersToKilometers";
 import WeatherDetails from "@/app/weather/components/WeatherDetails";
-import ForecastWeatherDetail from "@/app/weather/components/ForecastWeatherDetail";
 import { useAtom } from "jotai";
 import { loadingCityAtom, placeAtom } from "../atom";
-import { MdOutlineLocationOn } from "react-icons/md";
-import sortDataToDays from "./utils/sortDataToDays";
-import dayData from "./utils/dayData";
 
-const API_KEY = process.env.NEXT_PUBLIC_WEATHER_KEY;
+// const API_KEY = process.env.NEXT_PUBLIC_WEATHER_KEY;
+const API_KEY = 'bd363a0a91d6c85203270ce61960c38a';
 
 const Weather = () => {
 	const [place, setPlace] = useAtom(placeAtom);
