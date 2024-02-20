@@ -12,9 +12,9 @@ const Home = () => {
 					alt="home_header"
 					width={1000}
 					height={563}
+					unoptimized={true}
 					className="w-full h-full object-cover z-0"
 				/>
-				<img src="/images/gears.jpg" alt="home_header" className="w-full h-full object-cover z-0" />
 			</div>
 			<div className="h-5/6 items-center p-8">
 				<section className="flex gap-10 items-center flex-wrap">
