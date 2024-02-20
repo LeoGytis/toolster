@@ -2,13 +2,14 @@
 import MenuItem from "@/components/MenuItem";
 import { navLinksData } from "@/components/NavMenu";
 import Image from "next/image";
+import gears from "../../public/images/gears.jpg";
 
 const Home = () => {
 	return (
 		<div className="flex flex-col h-screen bg-[#4e5b69]">
 			<div className="relative w-full h-1/6 flex justify-center items-center shadow-xl">
 				<Image
-					src="/images/gears.jpg"
+					src={gears}
 					alt="home_header"
 					width={1000}
 					height={563}
