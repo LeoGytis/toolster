@@ -3,7 +3,8 @@
 const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig = {
-	basePath: isProd ? "/toolster" : "",
+	// basePath: isProd ? "/toolster" : "",
+	basePath: "/toolster",
 	output: "export",
 	images: {
 		unoptimized: true,
