@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
+	basePath: "/toolster",
 	output: "export",
 	images: {
 		// unoptimized: true,
