@@ -6,7 +6,7 @@ const nextConfig = {
 	basePath: isProd ? "/toolster" : "",
 	output: "export",
 	images: {
-		// unoptimized: true,
+		unoptimized: true,
 		remotePatterns: [
 			{
 				protocol: "https",
