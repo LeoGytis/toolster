@@ -52,13 +52,11 @@ const Countries = () => {
 		);
 
 	return (
-		<div className="text-black">
-			<ul className="flex gap-10 flex-wrap pt-10">
-				{countriesData?.map((country, index) => (
-					<CountryWrapper country={country} key={index} />
-				))}
-			</ul>
-		</div>
+		<ul className="flex justify-center gap-10 flex-wrap text-black bg-[#4e5b69] px-4 pt-10">
+			{countriesData?.map((country, index) => (
+				<CountryWrapper country={country} key={index} />
+			))}
+		</ul>
 	);
 };
 
@@ -66,10 +64,14 @@ export default Countries;
 
 const CountryWrapper = ({ country, key }: { country: CountryProps; key: number }) => {
 	return (
-		<li key={key} className="flex flex-col items-center">
-			<h1 className="text-lg ">{country.name.common}</h1>
-			<div className="w-72">
-				<img src={country.flags.png} alt={`Flag of ${country.name.common}`} />
+		<li key={key} className="flex flex-col items-center text-white rounded-lg bg-gray-800 px-8 py-2">
+			<h1 className="text-lg pb-2">{country.name.common}</h1>
+			<div className="w-72 max-h-44 pb-2">
+				<img
+					src={country.flags.png}
+					alt={`Flag of ${country.name.common}`}
+					className="w-full h-full object-contain"
+				/>
 			</div>
 			<div>
 				<strong>Capital:</strong> {country.capital}
