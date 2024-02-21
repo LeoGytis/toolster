@@ -2,6 +2,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 interface CountryProps {
 	name: {
@@ -22,35 +23,41 @@ interface CountryProps {
 const Countries = () => {
 	const [countriesData, setCountriesData] = useState<CountryProps[] | null>(null);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const options = {
-				method: "GET",
-				url: "https://restcountries.com/v3.1/all",
-			};
+	const { isPending, error, data, refetch } = useQuery<CountryProps>({
+		queryKey: ["repoData"],
+		queryFn: async () => {
+			const { data } = await axios.get("https://restcountries.com/v3.1/all");
+			setCountriesData(data);
+			return data;
+		},
+	});
 
-			try {
-				const response = await axios.request<CountryProps[]>(options);
-				setCountriesData(response.data);
-			} catch (error) {
-				console.error(error);
-			}
-		};
+	// useEffect(() => {
+	// 	refetch();
+	// }, [refetch]);
 
-		fetchData();
-	}, []);
+	if (isPending)
+		return (
+			<div className="flex items-center min-h-screen justify-center">
+				<p className="animate-bounce">Loading...</p>
+			</div>
+		);
+
+	if (error)
+		return (
+			<div className="flex items-center min-h-screen justify-center">
+				{/* @ts-ignore */}
+				<p className="text-red-600">{error.message}</p>
+			</div>
+		);
 
 	return (
 		<div className="text-black">
-			{countriesData ? (
-				<ul className="flex gap-10 flex-wrap pt-10">
-					{countriesData.map((country, index) => (
-						<CountryWrapper country={country} key={index} />
-					))}
-				</ul>
-			) : (
-				<p>Loading...</p>
-			)}
+			<ul className="flex gap-10 flex-wrap pt-10">
+				{countriesData?.map((country, index) => (
+					<CountryWrapper country={country} key={index} />
+				))}
+			</ul>
 		</div>
 	);
 };

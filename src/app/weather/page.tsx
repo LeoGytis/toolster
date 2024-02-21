@@ -16,7 +16,7 @@ import { useAtom } from "jotai";
 import { loadingCityAtom, placeAtom } from "../atom";
 
 // const API_KEY = process.env.NEXT_PUBLIC_WEATHER_KEY;
-const API_KEY = 'bd363a0a91d6c85203270ce61960c38a';
+const API_KEY = "bd363a0a91d6c85203270ce61960c38a";
 
 const Weather = () => {
 	const [place, setPlace] = useAtom(placeAtom);
@@ -28,7 +28,6 @@ const Weather = () => {
 			const { data } = await axios.get(
 				`https://api.openweathermap.org/data/2.5/forecast?q=${place}&appid=${API_KEY}&cnt=56`
 			);
-			console.log("🚀 ~ DATA HERE:", data);
 			return data;
 		},
 	});
