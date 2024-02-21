@@ -45,7 +45,7 @@ const Countries = () => {
 			{countriesData ? (
 				<ul className="flex gap-10 flex-wrap pt-10">
 					{countriesData.map((country, index) => (
-						<CountryWrapper key={index} country={country} />
+						<CountryWrapper country={country} key={index} />
 					))}
 				</ul>
 			) : (
@@ -57,22 +57,22 @@ const Countries = () => {
 
 export default Countries;
 
-const CountryWrapper = ({ key, ...country }: CountryProps & { key: number }) => {
-	// const { country } = countryProps;
+const CountryWrapper = ({ country, key }: { country: CountryProps; key: number }) => {
 	return (
-		<li>
-			<strong>{country.name.common}</strong>
-			<br />
-			<img src={country.flags.png} alt={`Flag of ${country.name.common}`} />
-			<strong>Capital:</strong> {country.capital}
-			<br />
-			<strong>Area:</strong> {country.area}
-			<br />
-			<strong>Population:</strong> {country.population}
-			<br />
-			<strong>Flag:</strong> <br />
-			<strong>Google Maps:</strong> <br />
-			<strong>OpenStreet Maps:</strong>{" "}
+		<li key={key} className="flex flex-col items-center">
+			<h1 className="text-lg ">{country.name.common}</h1>
+			<div className="w-72">
+				<img src={country.flags.png} alt={`Flag of ${country.name.common}`} />
+			</div>
+			<div>
+				<strong>Capital:</strong> {country.capital}
+			</div>
+			<div>
+				<strong>Area:</strong> {country.area}
+			</div>
+			<div>
+				<strong>Population:</strong> {country.population}
+			</div>
 		</li>
 	);
 };
