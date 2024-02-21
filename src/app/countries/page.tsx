@@ -1,10 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-interface CountryInfo {
+interface CountryProps {
 	name: {
 		common: string;
 	};
@@ -21,9 +20,7 @@ interface CountryInfo {
 }
 
 const Countries = () => {
-	const [countriesData, setCountriesData] = useState<CountryInfo[] | null>(
-		null
-	);
+	const [countriesData, setCountriesData] = useState<CountryProps[] | null>(null);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -33,7 +30,7 @@ const Countries = () => {
 			};
 
 			try {
-				const response = await axios.request<CountryInfo[]>(options);
+				const response = await axios.request<CountryProps[]>(options);
 				setCountriesData(response.data);
 			} catch (error) {
 				console.error(error);
@@ -48,23 +45,7 @@ const Countries = () => {
 			{countriesData ? (
 				<ul className="flex gap-10 flex-wrap pt-10">
 					{countriesData.map((country, index) => (
-						<li key={index}>
-							<strong> {country.name.common}</strong>
-							<br />
-							<img
-								src={country.flags.png}
-								alt={`Flag of ${country.name.common}`}
-							/>
-							<strong>Capital:</strong> {country.capital}
-							<br />
-							<strong>Area:</strong> {country.area}
-							<br />
-							<strong>Population:</strong> {country.population}
-							<br />
-							<strong>Flag:</strong> <br />
-							<strong>Google Maps:</strong> <br />
-							<strong>OpenStreet Maps:</strong>{" "}
-						</li>
+						<CountryWrapper key={index} country={country} />
 					))}
 				</ul>
 			) : (
@@ -75,3 +56,23 @@ const Countries = () => {
 };
 
 export default Countries;
+
+const CountryWrapper = ({ key, ...country }: CountryProps & { key: number }) => {
+	// const { country } = countryProps;
+	return (
+		<li>
+			<strong>{country.name.common}</strong>
+			<br />
+			<img src={country.flags.png} alt={`Flag of ${country.name.common}`} />
+			<strong>Capital:</strong> {country.capital}
+			<br />
+			<strong>Area:</strong> {country.area}
+			<br />
+			<strong>Population:</strong> {country.population}
+			<br />
+			<strong>Flag:</strong> <br />
+			<strong>Google Maps:</strong> <br />
+			<strong>OpenStreet Maps:</strong>{" "}
+		</li>
+	);
+};

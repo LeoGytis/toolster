@@ -16,17 +16,17 @@ import { MdOutlineTimer } from "react-icons/md";
 
 export const navLinksData = [
 	{ item: "weather", icon: <TiWeatherPartlySunny /> },
-	{ item: "time", icon: <MdOutlineTimer /> },
-	{ item: "dashboard", icon: <BiSolidDashboard /> },
-	{ item: "mobiles", icon: <FaMobileRetro /> },
 	{ item: "countries", icon: <FaGlobeAmericas /> },
-	{ item: "cars", icon: <IoCarSharp /> },
-	{ item: "social", icon: <FaMobileRetro /> },
-	{ item: "recruitment", icon: <MdPersonSearch /> },
-	{ item: "schedule", icon: <BsCalendar3 /> },
-	{ item: "employee", icon: <FaPeopleGroup /> },
-	{ item: "department", icon: <PiCirclesThreeBold /> },
-	{ item: "settings", icon: <IoSettingsSharp /> },
+	// { item: "time", icon: <MdOutlineTimer /> },
+	// { item: "dashboard", icon: <BiSolidDashboard /> },
+	// { item: "mobiles", icon: <FaMobileRetro /> },
+	// { item: "cars", icon: <IoCarSharp /> },
+	// { item: "social", icon: <FaMobileRetro /> },
+	// { item: "recruitment", icon: <MdPersonSearch /> },
+	// { item: "schedule", icon: <BsCalendar3 /> },
+	// { item: "employee", icon: <FaPeopleGroup /> },
+	// { item: "department", icon: <PiCirclesThreeBold /> },
+	// { item: "settings", icon: <IoSettingsSharp /> },
 ];
 
 const NavMenu: any = () => {
